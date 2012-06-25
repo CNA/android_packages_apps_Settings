@@ -4843,6 +4843,13 @@
 
     <!-- || Extra intergrated settings strings || -->
 
+    <!-- Wifi sleep timeout -->
+    <string name="wifi_idle_mn_title">Wi-Fi idle timeout</string>
+    <string name="wifi_idle_5mn">5 minutes</string>
+    <string name="wifi_idle_15mn">15 minutes (default)</string>
+    <string name="wifi_idle_30mn">30 minutes</string>
+    <string name="wifi_idle_1h">1 hour</string>
+    <string name="wifi_idle_3h">3 hours</string>
 
     <!-- Wireless & networks | NFC polling mode -->
     <string name="nfc_polling_mode_title">NFC polling mode</string>
