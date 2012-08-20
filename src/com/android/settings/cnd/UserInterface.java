@@ -24,6 +24,7 @@ import android.graphics.Rect;
 import android.net.Uri;
 import android.os.Bundle;
 import android.preference.CheckBoxPreference;
+import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceScreen;
 import android.provider.MediaStore;
@@ -46,17 +47,19 @@ import com.android.settings.R;
 import com.android.settings.util.CMDProcessor;
 import com.android.settings.util.Helpers;
 
-public class UserInterface extends SettingsPreferenceFragment {
+public class UserInterface extends SettingsPreferenceFragment implements Preference.OnPreferenceChangeListener {
 
     public static final String TAG = "UserInterface";
 
     private static final String PREF_CUSTOM_CARRIER_LABEL = "custom_carrier_label";
     private static final String KEY_IME_SWITCHER = "status_bar_ime_switcher";
     private static final String PREF_RECENT_KILL_ALL = "recent_kill_all";
+    private static final String VOLUME_KEY_CURSOR_CONTROL = "volume_key_cursor_control";
 
     Preference mCustomLabel;
     CheckBoxPreference mStatusBarImeSwitcher;
     CheckBoxPreference mRecentKillAll;
+    ListPreference mVolumeKeyCursorControl;
 
     String mCustomLabelText = null;
 
@@ -81,6 +84,12 @@ public class UserInterface extends SettingsPreferenceFragment {
         mRecentKillAll = (CheckBoxPreference) findPreference(PREF_RECENT_KILL_ALL);
         mRecentKillAll.setChecked(Settings.System.getInt(getActivity().getContentResolver(),
                 Settings.System.RECENT_KILL_ALL_BUTTON, 0) == 1);
+
+        mVolumeKeyCursorControl = (ListPreference) findPreference(VOLUME_KEY_CURSOR_CONTROL);
+        mVolumeKeyCursorControl.setOnPreferenceChangeListener(this);
+        mVolumeKeyCursorControl.setValue(Integer.toString(Settings.System.getInt(getActivity()
+                .getContentResolver(), Settings.System.VOLUME_KEY_CURSOR_CONTROL, 0)));
+        mVolumeKeyCursorControl.setSummary(mVolumeKeyCursorControl.getEntry());
     }
 
     private void updateCustomLabelTextSummary() {
@@ -137,5 +146,19 @@ public class UserInterface extends SettingsPreferenceFragment {
             alert.show();
         }
         return super.onPreferenceTreeClick(preferenceScreen, preference);
+    }
+
+    @Override
+    public boolean onPreferenceChange(Preference preference, Object value) {
+        if (preference == mVolumeKeyCursorControl) {
+            String volumeKeyCursorControl = (String) value;
+            int val = Integer.parseInt(volumeKeyCursorControl);
+            Settings.System.putInt(getActivity().getContentResolver(),
+                                   Settings.System.VOLUME_KEY_CURSOR_CONTROL, val);
+            int index = mVolumeKeyCursorControl.findIndexOfValue(volumeKeyCursorControl);
+            mVolumeKeyCursorControl.setSummary(mVolumeKeyCursorControl.getEntries()[index]);
+            return true;
+        }
+        return false;
     }
 }
