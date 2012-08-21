@@ -1699,4 +1699,10 @@
     <string name="help_label" msgid="1107174367904110532">"Help"</string>
     <string name="cell_broadcast_settings" msgid="8415582011920085222">"Cell broadcasts"</string>
     <string name="cell_broadcast_settings_summary" msgid="3301339398950905913">"Selecteer de typen noodoproepen die moeten worden weergegeven."</string>
+
+    <!-- Advanced translations -->
+    <string name="advanced_settings_title">Gevorderd</string>
+    <string name="quiet_hours_title">Rustige uren</string>
+    <string name="profiles_settings_title">Profielen</string>
+
 </resources>

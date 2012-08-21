@@ -1699,4 +1699,10 @@
     <string name="help_label" msgid="1107174367904110532">"Hjälp"</string>
     <string name="cell_broadcast_settings" msgid="8415582011920085222">"Cell broadcasts"</string>
     <string name="cell_broadcast_settings_summary" msgid="3301339398950905913">"Välj vilka typer av varningsmeddelanden som ska visas."</string>
+
+    <!-- Advanced translations -->
+    <string name="advanced_settings_title">Avancerad</string>
+    <string name="quiet_hours_title">Tysta timmar</string>
+    <string name="profiles_settings_title">Profiler</string>
+
 </resources>

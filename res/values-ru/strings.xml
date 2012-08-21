@@ -1701,4 +1701,10 @@
     <string name="help_label" msgid="1107174367904110532">"Справка"</string>
     <string name="cell_broadcast_settings" msgid="8415582011920085222">"Широковещательная передача сообщений"</string>
     <string name="cell_broadcast_settings_summary" msgid="3301339398950905913">"Выберите типы экстренных оповещений на экране."</string>
+
+   <!-- Advanced translations -->
+   <string name="advanced_settings_title">передовой</string>
+   <string name="quiet_hours_title">Тихий час</string>
+   <string name="profiles_settings_title">Профили</string>
+
 </resources>

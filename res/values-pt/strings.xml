@@ -1699,4 +1699,11 @@
     <string name="help_label" msgid="1107174367904110532">"Ajuda"</string>
     <string name="cell_broadcast_settings" msgid="8415582011920085222">"Transmissões por celular"</string>
     <string name="cell_broadcast_settings_summary" msgid="3301339398950905913">"Selecione os tipos de alertas de emergência a exibir."</string>
+
+
+    <!-- Advanced translations -->
+    <string name="advanced_settings_title">Avançado</string>
+    <string name="quiet_hours_title">Horas calmas</string>
+    <string name="profiles_settings_title">Perfis</string>
+
 </resources>

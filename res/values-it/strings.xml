@@ -1699,4 +1699,10 @@
     <string name="help_label" msgid="1107174367904110532">"Guida"</string>
     <string name="cell_broadcast_settings" msgid="8415582011920085222">"Cell broadcast"</string>
     <string name="cell_broadcast_settings_summary" msgid="3301339398950905913">"Seleziona i tipi di avvisi di emergenza da visualizzare."</string>
+
+    <!-- Advanced translations -->
+    <string name="advanced_settings_title">Avanzato</string>
+    <string name="quiet_hours_title">Ore tranquille</string>
+    <string name="profiles_settings_title">Profili</string>[COLOR="Silver"]
+
 </resources>
