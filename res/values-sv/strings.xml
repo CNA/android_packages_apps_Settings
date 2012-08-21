@@ -1702,7 +1702,7 @@
 
     <!-- Advanced translations -->
     <string name="advanced_settings_title">Avancerad</string>
-    <string name="quiet_hours_title">tysta timmar</string>
-    <string name="profiles_settings_title">profiler</string>
+    <string name="quiet_hours_title">Tysta timmar</string>
+    <string name="profiles_settings_title">Profiler</string>
 
 </resources>
