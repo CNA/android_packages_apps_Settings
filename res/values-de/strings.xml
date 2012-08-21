@@ -1700,4 +1700,11 @@
     <string name="help_label" msgid="1107174367904110532">"Hilfe"</string>
     <string name="cell_broadcast_settings" msgid="8415582011920085222">"Cell Broadcasts"</string>
     <string name="cell_broadcast_settings_summary" msgid="3301339398950905913">"Wählen Sie aus, welche Notfallbenachrichtigungen angezeigt werden sollen."</string>
+
+    <!-- Advanced translations -->
+    <string name="advanced_settings_title">Erweitert</string>
+    <string name="quiet_hours_title">Ruhe Stunden</string>
+    <string name="profiles_settings_title">Profile</string>
+
+
 </resources>
