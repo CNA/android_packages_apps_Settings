@@ -36,13 +36,15 @@ public class InterfaceSettings extends SettingsPreferenceFragment implements
         Preference.OnPreferenceChangeListener {
     private static final String TAG = "InterfaceSettings";
 
-    private static final String KEY_NOTIFICATION_DRAWER = "notification_drawer";
+    private static final String KEY_NOTIFICATION_DRAWER_POWER_WIDGET = "notification_drawer_power_widget";
+    private static final String KEY_NOTIFICATION_DRAWER_TOGGLES = "notification_drawer_toggles";
     private static final String KEY_NOTIFICATION_DRAWER_TABLET = "notification_drawer_tablet";
     private static final String KEY_NAVIGATION_BAR = "navigation_bar";
     private static final String KEY_NAVIGATION_BAR_RING = "navring_settings";
     private static final String KEY_HARDWARE_KEYS = "hardware_keys";
 
     private PreferenceScreen mPhoneDrawer;
+    private PreferenceScreen mPhoneToggles;
     private PreferenceScreen mTabletDrawer;
     private PreferenceScreen mHardwareKeys;
 
@@ -54,13 +56,15 @@ public class InterfaceSettings extends SettingsPreferenceFragment implements
 
         addPreferencesFromResource(R.xml.interface_settings);
 
-        mPhoneDrawer = (PreferenceScreen) findPreference(KEY_NOTIFICATION_DRAWER);
+        mPhoneDrawer = (PreferenceScreen) findPreference(KEY_NOTIFICATION_DRAWER_POWER_WIDGET);
+        mPhoneToggles = (PreferenceScreen) findPreference(KEY_NOTIFICATION_DRAWER_TOGGLES);
         mTabletDrawer = (PreferenceScreen) findPreference(KEY_NOTIFICATION_DRAWER_TABLET);
         mHardwareKeys = (PreferenceScreen) findPreference(KEY_HARDWARE_KEYS);
 
         if (Utils.isTablet(getActivity())) {
             if (mPhoneDrawer != null) {
                 getPreferenceScreen().removePreference(mPhoneDrawer);
+                getPreferenceScreen().removePreference(mPhoneToggles);
                 getPreferenceScreen().removePreference(mHardwareKeys);
             }
         } else {

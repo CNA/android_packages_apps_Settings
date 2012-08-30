@@ -35,7 +35,7 @@
         android:title="@string/statusbar_settings_title" />
 
     <PreferenceScreen
-        android:key="notification_drawer"
+        android:key="notification_drawer_power_widget"
         android:fragment="com.android.settings.cnd.PowerWidget"
         android:title="@string/notification_drawer_title" />
 
@@ -43,6 +43,11 @@
         android:key="notification_drawer_tablet"
         android:fragment="com.android.settings.cnd.TabletPowerWidget"
         android:title="@string/notification_drawer_title" />
+
+    <PreferenceScreen
+        android:key="notification_drawer_toggles"
+        android:fragment="com.android.settings.cnd.Toggles"
+        android:title="@string/notification_drawer_toggles_title" />
 
     <PreferenceScreen
         android:key="navigation_bar"
