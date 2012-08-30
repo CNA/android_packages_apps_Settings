@@ -52,9 +52,11 @@ public class UserInterface extends SettingsPreferenceFragment {
 
     private static final String PREF_CUSTOM_CARRIER_LABEL = "custom_carrier_label";
     private static final String KEY_IME_SWITCHER = "status_bar_ime_switcher";
+    private static final String PREF_RECENT_KILL_ALL = "recent_kill_all";
 
     Preference mCustomLabel;
     CheckBoxPreference mStatusBarImeSwitcher;
+    CheckBoxPreference mRecentKillAll;
 
     String mCustomLabelText = null;
 
@@ -75,6 +77,10 @@ public class UserInterface extends SettingsPreferenceFragment {
             mStatusBarImeSwitcher.setChecked(Settings.System.getInt(getActivity().getContentResolver(),
                     Settings.System.STATUS_BAR_IME_SWITCHER, 0) != 0);
         }
+
+        mRecentKillAll = (CheckBoxPreference) findPreference(PREF_RECENT_KILL_ALL);
+        mRecentKillAll.setChecked(Settings.System.getInt(getActivity().getContentResolver(),
+                Settings.System.RECENT_KILL_ALL_BUTTON, 0) == 1);
     }
 
     private void updateCustomLabelTextSummary() {
@@ -93,6 +99,12 @@ public class UserInterface extends SettingsPreferenceFragment {
         if (preference == mStatusBarImeSwitcher) {
             Settings.System.putInt(getActivity().getContentResolver(),
                     Settings.System.STATUS_BAR_IME_SWITCHER, mStatusBarImeSwitcher.isChecked() ? 1 : 0);
+            return true;
+        } else if (preference == mRecentKillAll) {
+            boolean checked = ((CheckBoxPreference) preference).isChecked();
+            Settings.System.putInt(getActivity().getContentResolver(),
+                    Settings.System.RECENT_KILL_ALL_BUTTON, checked ? 1 : 0);
+            Helpers.restartSystemUI();
             return true;
         } else if (preference == mCustomLabel) {
             AlertDialog.Builder alert = new AlertDialog.Builder(getActivity());
