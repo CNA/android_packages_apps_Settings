@@ -51,8 +51,10 @@ public class UserInterface extends SettingsPreferenceFragment {
     public static final String TAG = "UserInterface";
 
     private static final String PREF_CUSTOM_CARRIER_LABEL = "custom_carrier_label";
+    private static final String KEY_IME_SWITCHER = "status_bar_ime_switcher";
 
     Preference mCustomLabel;
+    CheckBoxPreference mStatusBarImeSwitcher;
 
     String mCustomLabelText = null;
 
@@ -67,6 +69,12 @@ public class UserInterface extends SettingsPreferenceFragment {
 
         mCustomLabel = findPreference(PREF_CUSTOM_CARRIER_LABEL);
         updateCustomLabelTextSummary();
+
+        mStatusBarImeSwitcher = (CheckBoxPreference) findPreference(KEY_IME_SWITCHER);
+        if (mStatusBarImeSwitcher != null) {
+            mStatusBarImeSwitcher.setChecked(Settings.System.getInt(getActivity().getContentResolver(),
+                    Settings.System.STATUS_BAR_IME_SWITCHER, 0) != 0);
+        }
     }
 
     private void updateCustomLabelTextSummary() {
@@ -82,7 +90,11 @@ public class UserInterface extends SettingsPreferenceFragment {
     @Override
     public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen,
             Preference preference) {
-        if (preference == mCustomLabel) {
+        if (preference == mStatusBarImeSwitcher) {
+            Settings.System.putInt(getActivity().getContentResolver(),
+                    Settings.System.STATUS_BAR_IME_SWITCHER, mStatusBarImeSwitcher.isChecked() ? 1 : 0);
+            return true;
+        } else if (preference == mCustomLabel) {
             AlertDialog.Builder alert = new AlertDialog.Builder(getActivity());
 
             alert.setTitle(R.string.custom_carrier_label_title);
