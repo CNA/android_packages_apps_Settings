@@ -45,12 +45,14 @@ public class SoundSettings extends SettingsPreferenceFragment implements
     private static final String KEY_VOLUME_OVERLAY = "volume_overlay";
     private static final String KEY_SAFE_HEADSET_RESTORE = "safe_headset_restore";
     private static final String KEY_VOLBTN_MUSIC_CTRL = "volbtn_music_controls";
+    private static final String KEY_VOLUME_ADJUST_SOUNDS = "volume_adjust_sounds";
 
     private final Configuration mCurConfig = new Configuration();
 
     private ListPreference mVolumeOverlay;
     private CheckBoxPreference mSafeHeadsetRestore;
     private CheckBoxPreference mVolBtnMusicCtrl;
+    private CheckBoxPreference mVolumeAdjustSounds;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -75,6 +77,11 @@ public class SoundSettings extends SettingsPreferenceFragment implements
         mVolBtnMusicCtrl = (CheckBoxPreference) findPreference(KEY_VOLBTN_MUSIC_CTRL);
         mVolBtnMusicCtrl.setChecked(Settings.System.getInt(resolver,
                 Settings.System.VOLBTN_MUSIC_CONTROLS, 1) != 0);
+
+        mVolumeAdjustSounds = (CheckBoxPreference) findPreference(KEY_VOLUME_ADJUST_SOUNDS);
+        mVolumeAdjustSounds.setPersistent(false);
+        mVolumeAdjustSounds.setChecked(Settings.System.getInt(resolver,
+                Settings.System.VOLUME_ADJUST_SOUNDS_ENABLED, 1) != 0);
 
     }
     
@@ -105,6 +112,10 @@ public class SoundSettings extends SettingsPreferenceFragment implements
 		} else if (preference == mVolBtnMusicCtrl) {
             Settings.System.putInt(getContentResolver(), Settings.System.VOLBTN_MUSIC_CONTROLS,
                     mVolBtnMusicCtrl.isChecked() ? 1 : 0);
+
+        } else if (preference == mVolumeAdjustSounds) {
+            Settings.System.putInt(getContentResolver(), Settings.System.VOLUME_ADJUST_SOUNDS_ENABLED ,
+                    mVolumeAdjustSounds.isChecked() ? 1 : 0);
 
         } else {
             // If we didn't handle it, let preferences handle it.
