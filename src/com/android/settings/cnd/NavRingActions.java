@@ -1,5 +1,5 @@
 
-package com.android.settings.eos;
+package com.android.settings.cnd;
 
 import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;

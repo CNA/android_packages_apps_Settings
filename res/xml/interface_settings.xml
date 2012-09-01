@@ -16,13 +16,13 @@
 
 <PreferenceScreen
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:title="@string/interface_title"
+    android:title="@string/interface_settings_title"
     xmlns:settings="http://schemas.android.com/apk/res/com.android.settings">
 
     <PreferenceScreen
         android:key="general_ui_settings"
         android:fragment="com.android.settings.cnd.UserInterface"
-        android:title="@string/title_ui" />
+        android:title="@string/general_ui_settings_title" />
 
     <PreferenceScreen
         android:key="power_menu_settings"
@@ -37,12 +37,12 @@
     <PreferenceScreen
         android:key="notification_drawer_power_widget"
         android:fragment="com.android.settings.cnd.PowerWidget"
-        android:title="@string/notification_drawer_title" />
+        android:title="@string/notification_drawer_power_widget_title" />
 
     <PreferenceScreen
         android:key="notification_drawer_tablet"
         android:fragment="com.android.settings.cnd.TabletPowerWidget"
-        android:title="@string/notification_drawer_title" />
+        android:title="@string/notification_drawer_power_widget_title" />
 
     <PreferenceScreen
         android:key="notification_drawer_toggles"
@@ -52,12 +52,12 @@
     <PreferenceScreen
         android:key="navigation_bar"
         android:fragment="com.android.settings.cnd.NavbarSettings"
-        android:title="@string/nav_bar" />
+        android:title="@string/navigation_bar_title" />
 
     <PreferenceScreen
         android:key="navring_settings"
-        android:fragment="com.android.settings.eos.NavRingActions"
-        android:title="@string/interface_navring_settings" />
+        android:fragment="com.android.settings.cnd.NavRingActions"
+        android:title="@string/navigation_bar_ring_title" />
 
     <PreferenceScreen
         android:key="hardware_keys"
@@ -72,11 +72,11 @@
     <PreferenceScreen
         android:key="sound_settings"
         android:fragment="com.android.settings.cnd.SoundSettings"
-        android:title="@string/sound_title" />
+        android:title="@string/rom_sound_settings_title" />
 
     <PreferenceScreen
         android:key="display_settings"
         android:fragment="com.android.settings.cnd.DisplaySettings"
-        android:title="@string/display_title" />
+        android:title="@string/rom_display_settings_title" />
 
 </PreferenceScreen>

@@ -86,7 +86,7 @@
         android:id="@+id/quiet_hours_settings"
         android:icon="@drawable/ic_settings_quiet_hours"
         android:fragment="com.android.settings.cnd.QuietHours"
-        android:title="@string/quiet_hours_title" />
+        android:title="@string/quiet_hours_settings_title" />
 
     <!-- Themes -->
     <header
@@ -253,7 +253,7 @@
         android:id="@+id/about_rom"
         android:fragment="com.android.settings.cnd.About"
         android:icon="@drawable/ic_settings_about_cna"
-        android:title="@string/title_about" />
+        android:title="@string/about_cna_settings_title" />
 
     <!-- About Device -->
     <header

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen
 	xmlns:android="http://schemas.android.com/apk/res/android"
+   android:title="@string/about_cna_settings_title"
 	xmlns:cna="http://schemas.android.com/apk/res/com.android.settings">
 
 	<PreferenceCategory

@@ -1,35 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:title="@string/general_ui_settings_title">
 
-    <PreferenceCategory
-        android:key="misc"
-        android:title="@string/misc_short">
+    <Preference
+        android:key="custom_carrier_label"
+        android:title="@string/custom_carrier_label_title" />
 
-        <Preference
-            android:key="custom_carrier_label"
-            android:title="@string/custom_carrier_label_title" />
+    <ListPreference
+        android:key="volume_key_cursor_control"
+        android:persistent="false"
+        android:dialogTitle="@string/volume_key_cursor_control_title"
+        android:title="@string/volume_key_cursor_control_title"
+        android:entries="@array/volume_key_cursor_control_entries"
+        android:entryValues="@array/volume_key_cursor_control_values" />
 
-        <ListPreference
-            android:key="volume_key_cursor_control"
-            android:persistent="false"
-            android:dialogTitle="@string/volume_key_cursor_control_title"
-            android:title="@string/volume_key_cursor_control_title"
-            android:entries="@array/volume_key_cursor_control_entries"
-            android:entryValues="@array/volume_key_cursor_control_values" />
+    <CheckBoxPreference
+        android:key="recent_kill_all"
+        android:title="@string/recent_kill_all"
+        android:summary="@string/recent_kill_all_summary" />
 
-        <CheckBoxPreference
-            android:key="recent_kill_all"
-            android:title="@string/recent_kill_all"
-            android:summary="@string/recent_kill_all_summary" />
-
-        <CheckBoxPreference
-            android:key="status_bar_ime_switcher"
-            android:title="@string/ime_switcher_notify"
-            android:summary="@string/ime_switcher_notify_summary"
-            android:defaultValue="true"
-            android:persistent="false" />
-
-    </PreferenceCategory>
+    <CheckBoxPreference
+        android:key="status_bar_ime_switcher"
+        android:title="@string/ime_switcher_notify"
+        android:summary="@string/ime_switcher_notify_summary"
+        android:defaultValue="true"
+        android:persistent="false" />
 
 </PreferenceScreen>
