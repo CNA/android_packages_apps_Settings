@@ -1552,11 +1552,14 @@
             <meta-data android:name="android.appwidget.provider" android:resource="@xml/appwidget_info" />
         </receiver>
 
-        <receiver android:name=".cnd.BootReceiver" android:enabled="true">
+        <receiver
+            android:name=".service.BootReceiver">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
         </receiver>
+
+        <service android:name=".service.BootService" />
 
     </application>
 </manifest>
