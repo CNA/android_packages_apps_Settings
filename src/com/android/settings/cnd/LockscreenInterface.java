@@ -59,9 +59,7 @@ public class LockscreenInterface extends SettingsPreferenceFragment implements
     public static final String KEY_WIDGETS_PREF = "lockscreen_widgets";
     private static final String PREF_LOCKSCREEN_TEXT_COLOR = "lockscreen_text_color";
     private static final String KEY_ALWAYS_BATTERY_PREF = "lockscreen_battery_status";
-    public static final String KEY_VIBRATE_PREF = "lockscreen_vibrate";
 
-    private CheckBoxPreference mVibratePref;
     private ListPreference mCustomBackground;
     private ListPreference mWidgetsAlignment;
     private Preference mWeatherPref;
@@ -101,12 +99,6 @@ public class LockscreenInterface extends SettingsPreferenceFragment implements
         
         mLockscreenTextColor = (ColorPickerPreference) findPreference(PREF_LOCKSCREEN_TEXT_COLOR);
         mLockscreenTextColor.setOnPreferenceChangeListener(this);
-
-        mVibratePref = (CheckBoxPreference) findPreference(KEY_VIBRATE_PREF);
-        boolean bVibrate = Settings.System.getInt(getActivity().getApplicationContext().getContentResolver(),
-                    Settings.System.LOCKSCREEN_VIBRATE_ENABLED, 1) == 1 ? true : false;
-        mVibratePref.setChecked(bVibrate);
-        mVibratePref.setOnPreferenceChangeListener(this);
 
         mIsScreenLarge = Utils.isTablet(getActivity());
 
@@ -299,15 +291,6 @@ public class LockscreenInterface extends SettingsPreferenceFragment implements
             Settings.System.putInt(getActivity().getApplicationContext().getContentResolver(),
                     Settings.System.LOCKSCREEN_ALWAYS_SHOW_BATTERY, value);
             mBatteryStatus.setSummary(mBatteryStatus.getEntries()[index]);
-            return true;
-        } else if (preference == mVibratePref) {
-            boolean bValue = Boolean.valueOf((Boolean) objValue);
-            int value = 0;
-            if (bValue) {
-                value = 1;
-            }
-            Settings.System.putInt(getActivity().getApplicationContext().getContentResolver(),
-                Settings.System.LOCKSCREEN_VIBRATE_ENABLED, value);
             return true;
         } else if (preference == mLockscreenTextColor) {
             String hex = ColorPickerPreference.convertToARGB(Integer.valueOf(String.valueOf(objValue)));

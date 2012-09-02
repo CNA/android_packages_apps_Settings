@@ -83,15 +83,4 @@
 
     </PreferenceCategory>
 
-    <PreferenceCategory
-        android:key="additional_options"
-        android:title="@string/additional_options_title">
-
-        <CheckBoxPreference
-            android:key="lockscreen_vibrate"
-            android:title="@string/lockscreen_vibrate_enabled_title"	       
-            android:summary="@string/lockscreen_vibrate_enabled_head"/>
-
-    </PreferenceCategory>
-
 </PreferenceScreen>
