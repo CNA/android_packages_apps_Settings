@@ -152,8 +152,8 @@
 
     <!-- DeviceParts Device Specific settings -->
     <header
-        android:id="@+id/device_parts_settings"
         android:title="@string/device_parts_settings_title"
+        android:id="@+id/advanced_settings"
         android:icon="@drawable/ic_settings_device_parts">
         <intent
             android:action="com.cyanogenmod.action.LAUNCH_DEVICE_SETTINGS"
