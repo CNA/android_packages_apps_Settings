@@ -274,27 +274,20 @@ public class NavbarSettings extends SettingsPreferenceFragment implements
             String newVal = (String) newValue;
             int dp = Integer.parseInt(newVal);
             int width = mapChosenDpToPixels(dp);
-            Settings.System.putInt(getContentResolver(), Settings.System.NAVIGATION_BAR_WIDTH,
-                    width);
-            showDialog(DIALOG_NAVBAR_HEIGHT_REBOOT);
+            Settings.System.putInt(getContentResolver(), Settings.System.NAVIGATION_BAR_WIDTH, width);
             return true;
         } else if (preference == mNavigationBarHeight) {
             String newVal = (String) newValue;
             int dp = Integer.parseInt(newVal);
             int height = mapChosenDpToPixels(dp);
-            Settings.System.putInt(getContentResolver(), Settings.System.NAVIGATION_BAR_HEIGHT,
-                    height);
-            showDialog(DIALOG_NAVBAR_HEIGHT_REBOOT);
+            Settings.System.putInt(getContentResolver(), Settings.System.NAVIGATION_BAR_HEIGHT, height);
             return true;
         } else if (preference == mNavigationBarHeightLandscape) {
             String newVal = (String) newValue;
             int dp = Integer.parseInt(newVal);
             int height = mapChosenDpToPixels(dp);
-            Settings.System.putInt(getContentResolver(), Settings.System.NAVIGATION_BAR_HEIGHT_LANDSCAPE,
-                    height);
-            showDialog(DIALOG_NAVBAR_HEIGHT_REBOOT);
-            return true;    
-
+            Settings.System.putInt(getContentResolver(), Settings.System.NAVIGATION_BAR_HEIGHT_LANDSCAPE, height);
+            return true;
         }  else if ((preference.getKey().startsWith("navbar_action"))
                 || (preference.getKey().startsWith("navbar_longpress"))) {
             boolean longpress = preference.getKey().startsWith("navbar_longpress_");
