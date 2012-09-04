@@ -4142,6 +4142,7 @@
     <string name="power_menu_reboot_title">Reboot menu</string>
     <string name="power_menu_profiles_title">Profile switcher</string>
     <string name="power_menu_screenshot_title">Screenshot</string>
+    <string name="power_menu_navbartoggle_title">Navigation bar toggle</string>
     <string name="power_menu_silenttoggle_title">Silent toggle</string>
 
     <!-- Interface | Status bar -->

@@ -23,6 +23,11 @@
         android:defaultValue="true" />
 
     <CheckBoxPreference
+        android:key="power_menu_navbartoggle"
+        android:title="@string/power_menu_navbartoggle_title"
+        android:defaultValue="true" />
+
+    <CheckBoxPreference
         android:key="power_menu_silenttoggle"
         android:title="@string/power_menu_silenttoggle_title"
         android:defaultValue="true" />

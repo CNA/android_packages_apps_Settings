@@ -42,12 +42,14 @@ public class PowerMenuSettings extends SettingsPreferenceFragment implements
     private static final String KEY_PROFILES = "power_menu_profiles";
     private static final String KEY_SCREENSHOT = "power_menu_screenshot";
     private static final String KEY_AIRPLANEMODE = "power_menu_airplanemode";
+    private static final String KEY_NAVBARTOGGLE = "power_menu_navbartoggle";
     private static final String KEY_SILENTTOGGLE = "power_menu_silenttoggle";
 
     private CheckBoxPreference mRebootPref;
     private CheckBoxPreference mProfilesPref;
     private CheckBoxPreference mScreenshotPref;
     private CheckBoxPreference mAirplaneModePref;
+    private CheckBoxPreference mNavBarTogglePref;
     private CheckBoxPreference mSilentTogglePref;
 
     private final Configuration mCurConfig = new Configuration();
@@ -73,6 +75,10 @@ public class PowerMenuSettings extends SettingsPreferenceFragment implements
         mAirplaneModePref = (CheckBoxPreference) findPreference(KEY_AIRPLANEMODE);
         mAirplaneModePref.setChecked((Settings.System.getInt(getContentResolver(),
                 Settings.System.POWER_MENU_AIRPLANEMODE_ENABLED, 1) == 1));
+
+        mNavBarTogglePref = (CheckBoxPreference) findPreference(KEY_NAVBARTOGGLE);
+        mNavBarTogglePref.setChecked((Settings.System.getInt(getContentResolver(),
+                Settings.System.POWER_DIALOG_SHOW_NAVBAR_HIDE, 0) == 1));
 
         mSilentTogglePref = (CheckBoxPreference) findPreference(KEY_SILENTTOGGLE);
         mSilentTogglePref.setChecked((Settings.System.getInt(getContentResolver(),
@@ -115,6 +121,12 @@ public class PowerMenuSettings extends SettingsPreferenceFragment implements
             value = mAirplaneModePref.isChecked();
             Settings.System.putInt(getContentResolver(),
                     Settings.System.POWER_MENU_AIRPLANEMODE_ENABLED,
+                    value ? 1 : 0);
+
+        } else if (preference == mNavBarTogglePref) {
+            value = mNavBarTogglePref.isChecked();
+            Settings.System.putInt(getContentResolver(),
+                    Settings.System.POWER_DIALOG_SHOW_NAVBAR_HIDE,
                     value ? 1 : 0);
 
         } else if (preference == mSilentTogglePref) {
