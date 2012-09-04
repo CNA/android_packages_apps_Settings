@@ -22,6 +22,11 @@
         android:title="@string/additional_options_title">
 
         <CheckBoxPreference
+            android:key="lockscreen_vibrate"
+            android:title="@string/lockscreen_vibrate_enabled_title"	       
+            android:summary="@string/lockscreen_vibrate_enabled_head"/>
+
+        <CheckBoxPreference
             android:key="menu_unlock"
             android:title="@string/unlock_menu_unlock_title"
             android:summary="@string/unlock_menu_unlock_summary" />
@@ -30,11 +35,6 @@
             android:key="quick_unlock_control"
             android:title="@string/unlock_quick_unlock_control_title"
             android:summary="@string/unlock_quick_unlock_control_summary" />
-
-        <CheckBoxPreference
-            android:key="lockscreen_vibrate"
-            android:title="@string/lockscreen_vibrate_enabled_title"	       
-            android:summary="@string/lockscreen_vibrate_enabled_head"/>
 
     </PreferenceCategory>
 
