@@ -19,7 +19,7 @@
 
     <CheckBoxPreference
         android:key="power_menu_airplanemode"
-        android:title="@string/power_menu_airplanemode_title"
+        android:title="@string/airplane_mode"
         android:defaultValue="true" />
 
     <CheckBoxPreference

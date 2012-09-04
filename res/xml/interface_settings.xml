@@ -27,22 +27,22 @@
     <PreferenceScreen
         android:key="power_menu_settings"
         android:fragment="com.android.settings.cnd.PowerMenuSettings"
-        android:title="@string/power_menu_settings_title" />
+        android:title="@string/power_menu_title" />
 
     <PreferenceScreen
         android:key="statusbar_settings"
         android:fragment="com.android.settings.cnd.StatusBarSettings"
-        android:title="@string/statusbar_settings_title" />
+        android:title="@string/status_bar_title" />
 
     <PreferenceScreen
         android:key="notification_drawer_power_widget"
         android:fragment="com.android.settings.cnd.PowerWidget"
-        android:title="@string/notification_drawer_power_widget_title" />
+        android:title="@string/notification_drawer_title" />
 
     <PreferenceScreen
         android:key="notification_drawer_tablet"
         android:fragment="com.android.settings.cnd.TabletPowerWidget"
-        android:title="@string/notification_drawer_power_widget_title" />
+        android:title="@string/notification_drawer_title" />
 
     <PreferenceScreen
         android:key="notification_drawer_toggles"
@@ -57,7 +57,7 @@
     <PreferenceScreen
         android:key="navring_settings"
         android:fragment="com.android.settings.cnd.NavRingActions"
-        android:title="@string/navigation_bar_ring_title" />
+        android:title="@string/interface_navring_settings" />
 
     <PreferenceScreen
         android:key="hardware_keys"
@@ -72,11 +72,11 @@
     <PreferenceScreen
         android:key="sound_settings"
         android:fragment="com.android.settings.cnd.SoundSettings"
-        android:title="@string/rom_sound_settings_title" />
+        android:title="@string/sound_settings" />
 
     <PreferenceScreen
         android:key="display_settings"
         android:fragment="com.android.settings.cnd.DisplaySettings"
-        android:title="@string/rom_display_settings_title" />
+        android:title="@string/display_settings" />
 
 </PreferenceScreen>

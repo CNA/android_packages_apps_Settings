@@ -4108,24 +4108,22 @@
     <string name="interface_settings_title">Interface</string>
     <string name="performance_settings_title">Performance</string>
     <string name="profiles_settings_title">Profiles</string>
-    <string name="quiet_hours_settings_title">Quiet hours</string>
+    <string name="quiet_hours_title">Quiet hours</string>
     <string name="themes_settings_title">Themes</string>
     <string name="launcher_settings_title">Launcher</string>
-    <string name="device_parts_settings_title">Parts</string>
+    <string name="advanced_settings_title">Advanced</string>
     <string name="about_cna_settings_title">About CN(A)</string>
 
     <!-- Interface | Titles -->
-    <string name="general_ui_settings_title">General UI</string>
-    <string name="power_menu_settings_title">Power menu</string>
-    <string name="statusbar_settings_title">Status bar</string>
-    <string name="notification_drawer_power_widget_title">Notification power widget</string>
+    <string name="general_ui_settings_title">@string/sound_category_sound_title</string>
+    <string name="power_menu_title">Power menu</string>
+    <string name="status_bar_title">Status bar</string>
+    <string name="notification_drawer_title">Notification power widget</string>
     <string name="notification_drawer_toggles_title">Notification toggles</string>
     <string name="navigation_bar_title">Navigation bar</string>
-    <string name="navigation_bar_ring_title">Navigation bar ring</string>
+    <string name="interface_navring_settings">Navigation bar ring</string>
     <string name="hardware_keys_title">Hardware keys</string>
     <string name="lock_screen_title">Lock screen</string>
-    <string name="rom_sound_settings_title">Sound</string>
-    <string name="rom_display_settings_title">Display</string>
 
     <!-- Interface | General UI -->
     <string name="custom_carrier_label_title">Custom carrier label</string>
@@ -4141,36 +4139,34 @@
     <string name="ime_switcher_notify_summary">Display input method selector notification</string>
 
     <!-- Interface | Power menu -->
-    <string name="power_menu_reboot_title">Reboot</string>
-    <string name="power_menu_profiles_title">Profiles</string>
+    <string name="power_menu_reboot_title">Reboot menu</string>
+    <string name="power_menu_profiles_title">Profile switcher</string>
     <string name="power_menu_screenshot_title">Screenshot</string>
-    <string name="power_menu_airplanemode_title">Airplane mode</string>
     <string name="power_menu_silenttoggle_title">Silent toggle</string>
 
     <!-- Interface | Status bar -->
-    <string name="status_bar_battery_icon_category">Battery icon options</string>
-    <string name="status_bar_battery_icon_style">Battery icon style</string>
-    <string name="status_bar_battery_notification_title">Battery icon in notifications</string>
-    <string name="status_bar_battery_notification_summary">Battery icon will show up where the clear all button shows up</string>
-    <string name="status_bar_battery_bar_category">Battery bar options</string>
-    <string name="status_bar_battery_bar_location">Battery bar location</string>
-    <string name="status_bar_battery_bar_style_title">Battery bar style</string>
-    <string name="status_bar_battery_bar_animate_title">Charging animation</string>
-    <string name="status_bar_battery_bar_animate_summary">The charging animation may result in a poor user experience. Enable at your own discretion.</string>
-    <string name="status_bar_battery_bar_color">Battery bar color</string>
-    <string name="status_bar_battery_bar_thickness_title">Battery bar thickness</string>
-    <string name="status_bar_clock_category">Clock options</string>
-    <string name="status_bar_clock_style_title">Clock style</string>
-    <string name="status_bar_clock_color_title">Clock color</string>
-    <string name="status_bar_clock_ampm_style_title">AM/PM style</string>
-    <string name="status_bar_clock_dayofweek_style_title">Day of the week</string>
-    <string name="status_bar_clock_dayofweek_style_summary">Abbreviated day of the week before the time</string>
-    <string name="status_bar_additional_options_title">Additional options</string>
-    <string name="status_bar_brightness_slider">Brightness slider</string>
-    <string name="status_bar_brightness_slider_summary">Allows adjusting of brightness by sliding across the status bar</string>
-    <string name="status_bar_brightness_slider_toggle_info">Automatic brightness is enabled</string>
-    <string name="status_bar_notification_count_title">Show notification count</string>
-    <string name="status_bar_notification_count_summary">Display number of pending notifications on the status bar</string>
+    <string name="battery_icon_category">Battery icon options</string>
+    <string name="battery_icon">Battery icon style</string>
+    <string name="battery_not_title">Battery icon in notifications</string>
+    <string name="battery_not_summary">Battery icon will show up where the clear all button shows up</string>
+    <string name="battery_bar_cat">Battery bar options</string>
+    <string name="battery_bar">Battery bar location</string>
+    <string name="battery_bar_style_title">Battery bar style</string>
+    <string name="battery_bar_animate_title">Charging animation</string>
+    <string name="battery_bar_animate_summary">The charging animation may result in a poor user experience. Enable at your own discretion.</string>
+    <string name="battery_bar_color">Battery bar color</string>
+    <string name="battery_bar_thickness_title">Battery bar thickness</string>
+    <string name="clock_cat">Clock options</string>
+    <string name="clock_title_enable">Clock style</string>
+    <string name="clock_color_title">Clock color</string>
+    <string name="title_clock_ampm_entries">AM/PM style</string>
+    <string name="enable_clock_weekday">Day of the week</string>
+    <string name="enable_clock_weekday_summary">Abbreviated day of the week before the time</string>
+    <string name="status_bar_toggle_brightness">Brightness control</string>
+    <string name="status_bar_toggle_brightness_summary">Adjust brightness by sliding across status bar</string>
+    <string name="status_bar_toggle_info">Automatic brightness is enabled</string>
+    <string name="status_bar_notif_count_title">Show notification count</string>
+    <string name="status_bar_notif_count_summary">Display number of pending notifications</string>
 
     <!-- Interface | Notifcation power widget  -->
     <string name="power_widget_title">Power widget</string>
@@ -4323,7 +4319,7 @@
     <string name="interface_navbar_restore_stock_color">Restore stock navigation bar color</string>
     <string name="interface_navbar_restore_stock_color_summary">Restore stock black color of the navigation bar</string>
     <string name="button_transparency_title">Navigation button transparency</string>
-    <string name="menu_navigation_bar_reset">Reset navigation bar</string>
+    <string name="menu_nav_bar_reset">Reset navigation bar</string>
     <string name="dpi">DPI</string>
 
     <!-- Interface | Navigation ring bar -->
