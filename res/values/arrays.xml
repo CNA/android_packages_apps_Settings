@@ -1625,9 +1625,9 @@
 
     <string-array name="glow_times_values" translatable="false">
       <item>0|0</item>
-      <item>100|10</item>
-      <item>250|25</item>
-      <item>500|50</item>
+      <item>75|8</item>
+      <item>188|19</item>
+      <item>375|38</item>
     </string-array>
 
     <string-array name="battery_bar_entries">
