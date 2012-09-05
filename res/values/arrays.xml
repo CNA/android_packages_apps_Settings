@@ -1041,6 +1041,7 @@
         <item>@string/icon_picker_rss</item>
         <item>@string/icon_picker_search</item>
         <item>@string/icon_picker_twitter</item>
+        <item>@string/icon_picker_wallet</item>
     </string-array>
 
     <string-array name="lockscreen_icon_picker_icons" translatable="false">
@@ -1066,6 +1067,7 @@
         <item>@*android:drawable/ic_lockscreen_rss_normal</item>
         <item>@*android:drawable/ic_lockscreen_google_normal</item>
         <item>@*android:drawable/ic_lockscreen_twitter_normal</item>
+        <item>@*android:drawable/ic_lockscreen_wallet_normal</item>
     </string-array>
 
     <!-- Profile mode options. -->
