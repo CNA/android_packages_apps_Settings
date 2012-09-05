@@ -84,6 +84,38 @@
     </PreferenceCategory>
 
     <PreferenceCategory
+        android:key="signal_options"
+        android:title="@string/signal_options_title">
+
+        <ListPreference
+            android:entries="@array/signal_style_entries"
+            android:entryValues="@array/signal_style_values"
+            android:key="signal_style"
+            android:title="@string/signal_style" />
+    
+        <net.margaritov.preference.colorpicker.ColorPickerPreference
+            android:key="signal_color"
+            android:title="@string/signal_color_title"
+            android:defaultValue="@android:color/holo_blue_light" />
+    
+        <ListPreference
+            android:entries="@array/wifi_signal_style_entries"
+            android:entryValues="@array/wifi_signal_style_values"
+            android:key="wifi_signal_style"
+            android:title="@string/wifi_signal_style" />
+    
+        <net.margaritov.preference.colorpicker.ColorPickerPreference
+            android:key="wifi_signal_color"
+            android:title="@string/wifi_signal_color_title"
+            android:defaultValue="@android:color/holo_blue_light" />
+    
+        <CheckBoxPreference
+            android:key="hide_signal"
+            android:title="@string/hide_signal_title" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
         android:key="additional_options"
         android:title="@string/additional_options_title">
         

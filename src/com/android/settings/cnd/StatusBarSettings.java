@@ -34,8 +34,13 @@ public class StatusBarSettings extends SettingsPreferenceFragment implements
     private static final String PREF_CLOCK_WEEKDAY = "clock_weekday";
     private static final String PREF_COLOR_PICKER = "clock_color";
     private static final String STATUS_BAR_BRIGHTNESS_CONTROL = "status_bar_brightness_control";
+    private static final String PREF_SIGNAL_STYLE = "signal_style";
+    private static final String PREF_SIGNAL_COLOR = "signal_color";
+    private static final String PREF_WIFI_SIGNAL_STYLE = "wifi_signal_style";
+    private static final String PREF_WIFI_SIGNAL_COLOR = "wifi_signal_color";
+    private static final String PREF_HIDE_SIGNAL = "hide_signal";
 
-    CheckBoxPreference mStatusBarNotifCount;
+
     ListPreference mBatteryIcon;
     CheckBoxPreference mBatteryNotification;
     ListPreference mBatteryBar;
@@ -46,8 +51,14 @@ public class StatusBarSettings extends SettingsPreferenceFragment implements
     ListPreference mClockStyle;
     ListPreference mClockAmPmstyle;
     ListPreference mClockWeekday;
-    ColorPickerPreference mColorPicker;
+    ColorPickerPreference mClockColorPicker;
+    ListPreference mDbmStyletyle;
+    ColorPickerPreference mSignalColorPicker;
+    ListPreference mWifiStyle;
+    ColorPickerPreference mWifiColorPicker;
+    CheckBoxPreference mHideSignal;
     CheckBoxPreference mStatusBarBrightnessControl;
+    CheckBoxPreference mStatusBarNotifCount;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -55,11 +66,6 @@ public class StatusBarSettings extends SettingsPreferenceFragment implements
 
         // Load the preferences from an XML resource
         addPreferencesFromResource(R.xml.statusbar_settings);
-
-        mStatusBarNotifCount = (CheckBoxPreference) findPreference(PREF_STATUS_BAR_NOTIF_COUNT);
-        mStatusBarNotifCount.setChecked(Settings.System.getInt(getActivity()
-                .getContentResolver(), Settings.System.STATUS_BAR_NOTIF_COUNT,
-                0) == 1);
 
         mBatteryIcon = (ListPreference) findPreference(PREF_BATT_ICON);
         mBatteryIcon.setOnPreferenceChangeListener(this);
@@ -120,8 +126,31 @@ public class StatusBarSettings extends SettingsPreferenceFragment implements
                 .getContentResolver(), Settings.System.STATUSBAR_CLOCK_WEEKDAY,
                 0)));
         
-        mColorPicker = (ColorPickerPreference) findPreference(PREF_COLOR_PICKER);
-        mColorPicker.setOnPreferenceChangeListener(this);
+        mClockColorPicker = (ColorPickerPreference) findPreference(PREF_COLOR_PICKER);
+        mClockColorPicker.setOnPreferenceChangeListener(this);
+
+        mDbmStyletyle = (ListPreference) findPreference(PREF_SIGNAL_STYLE);
+        mDbmStyletyle.setOnPreferenceChangeListener(this);
+        mDbmStyletyle.setValue(Integer.toString(Settings.System.getInt(getActivity()
+                .getContentResolver(), Settings.System.STATUSBAR_SIGNAL_TEXT,
+                0)));
+        
+        mSignalColorPicker = (ColorPickerPreference) findPreference(PREF_SIGNAL_COLOR);
+        mSignalColorPicker.setOnPreferenceChangeListener(this);
+
+        mWifiStyle = (ListPreference) findPreference(PREF_WIFI_SIGNAL_STYLE);
+        mWifiStyle.setOnPreferenceChangeListener(this);
+        mWifiStyle.setValue(Integer.toString(Settings.System.getInt(getActivity()
+                .getContentResolver(), Settings.System.STATUSBAR_WIFI_SIGNAL_TEXT,
+                0)));
+        
+        mWifiColorPicker = (ColorPickerPreference) findPreference(PREF_WIFI_SIGNAL_COLOR);
+        mWifiColorPicker.setOnPreferenceChangeListener(this);
+        
+        mHideSignal = (CheckBoxPreference) findPreference(PREF_HIDE_SIGNAL);
+        mHideSignal.setChecked(Settings.System.getInt(getActivity()
+                .getContentResolver(), Settings.System.STATUSBAR_HIDE_SIGNAL_BARS,
+                0) != 0);
         
         mStatusBarBrightnessControl = (CheckBoxPreference) findPreference(STATUS_BAR_BRIGHTNESS_CONTROL);
         mStatusBarBrightnessControl.setChecked((Settings.System.getInt(
@@ -136,6 +165,11 @@ public class StatusBarSettings extends SettingsPreferenceFragment implements
             }
         } catch (SettingNotFoundException e) {
         }
+
+        mStatusBarNotifCount = (CheckBoxPreference) findPreference(PREF_STATUS_BAR_NOTIF_COUNT);
+        mStatusBarNotifCount.setChecked(Settings.System.getInt(getActivity()
+                .getContentResolver(), Settings.System.STATUS_BAR_NOTIF_COUNT,
+                0) == 1);
 
         if (mTablet) {
             getPreferenceScreen().removePreference(mStatusBarBrightnessControl);
@@ -171,6 +205,12 @@ public class StatusBarSettings extends SettingsPreferenceFragment implements
                     ((CheckBoxPreference) preference).isChecked() ? 1 : 0);
             return true;
 
+        } else if (preference == mHideSignal) {
+            Settings.System.putInt(getActivity().getContentResolver(),
+                    Settings.System.STATUSBAR_HIDE_SIGNAL_BARS,
+                    ((CheckBoxPreference) preference).isChecked() ? 1 : 0);
+            return true;
+
         }
         return super.onPreferenceTreeClick(preferenceScreen, preference);
     }
@@ -202,7 +242,7 @@ public class StatusBarSettings extends SettingsPreferenceFragment implements
             result = Settings.System.putInt(getActivity().getContentResolver(),
                     Settings.System.STATUSBAR_CLOCK_WEEKDAY, val);
 
-       } else if (preference == mColorPicker) {
+       } else if (preference == mClockColorPicker) {
            String hex = ColorPickerPreference.convertToARGB(Integer
                     .valueOf(String.valueOf(newValue)));
            preference.setSummary(hex);
@@ -237,6 +277,36 @@ public class StatusBarSettings extends SettingsPreferenceFragment implements
             int val = Integer.parseInt((String) newValue);
             return Settings.System.putInt(getActivity().getContentResolver(),
                     Settings.System.STATUSBAR_BATTERY_BAR_THICKNESS, val);
+
+        } else if (preference == mDbmStyletyle) {
+
+            int val = Integer.parseInt((String) newValue);
+            return Settings.System.putInt(getActivity().getContentResolver(),
+                    Settings.System.STATUSBAR_SIGNAL_TEXT, val);
+
+        } else if (preference == mSignalColorPicker) {
+            String hex = ColorPickerPreference.convertToARGB(Integer.valueOf(String
+                    .valueOf(newValue)));
+            preference.setSummary(hex);
+
+            int intHex = ColorPickerPreference.convertToColorInt(hex);
+            result = Settings.System.putInt(getActivity().getContentResolver(),
+                    Settings.System.STATUSBAR_SIGNAL_TEXT_COLOR, intHex);
+
+        } else if (preference == mWifiStyle) {
+                
+            int val = Integer.parseInt((String) newValue);
+            return Settings.System.putInt(getActivity().getContentResolver(),
+                    Settings.System.STATUSBAR_WIFI_SIGNAL_TEXT, val);
+
+        } else if (preference == mWifiColorPicker) {
+            String hex = ColorPickerPreference.convertToARGB(Integer.valueOf(String
+                    .valueOf(newValue)));
+            preference.setSummary(hex);
+                
+            int intHex = ColorPickerPreference.convertToColorInt(hex);
+            result = Settings.System.putInt(getActivity().getContentResolver(),
+                    Settings.System.STATUSBAR_WIFI_SIGNAL_TEXT_COLOR, intHex);
 
         }
         return result;
