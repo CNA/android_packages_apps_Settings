@@ -6,6 +6,7 @@
         android:key="enable_toggles"
         android:summary="@string/enabled_toggles_summary"
         android:title="@string/enabled_toggles_title" />
+
     <Preference
         android:key="toggles"
         android:summary="@string/toggles_order_summary"
@@ -22,6 +23,7 @@
     <PreferenceCategory
         android:key="advanced_cat"
         android:title="@string/advanced_settings" >
+    
         <ListPreference
             android:entries="@array/toggle_style_entries"
             android:entryValues="@array/toggle_style_values"
@@ -62,7 +64,9 @@
             android:key="reset_toggles"
             android:summary="@string/reset_toggles_summary"
             android:title="@string/reset_toggles_title" >
+
         </Preference>
+
     </PreferenceCategory>
 
 </PreferenceScreen>
