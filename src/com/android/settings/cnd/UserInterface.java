@@ -26,6 +26,7 @@ import android.os.Bundle;
 import android.preference.CheckBoxPreference;
 import android.preference.ListPreference;
 import android.preference.Preference;
+import android.preference.PreferenceGroup;
 import android.preference.PreferenceScreen;
 import android.provider.MediaStore;
 import android.provider.Settings;
@@ -55,11 +56,13 @@ public class UserInterface extends SettingsPreferenceFragment implements Prefere
     private static final String KEY_IME_SWITCHER = "status_bar_ime_switcher";
     private static final String PREF_RECENT_KILL_ALL = "recent_kill_all";
     private static final String VOLUME_KEY_CURSOR_CONTROL = "volume_key_cursor_control";
+    private static final String PREF_KILL_APP_LONGPRESS_BACK = "kill_app_longpress_back";
 
     Preference mCustomLabel;
     CheckBoxPreference mStatusBarImeSwitcher;
     CheckBoxPreference mRecentKillAll;
     ListPreference mVolumeKeyCursorControl;
+    CheckBoxPreference mKillAppLongpressBack;
 
     String mCustomLabelText = null;
 
@@ -89,6 +92,26 @@ public class UserInterface extends SettingsPreferenceFragment implements Prefere
         mVolumeKeyCursorControl.setValue(Integer.toString(Settings.System.getInt(getActivity()
                 .getContentResolver(), Settings.System.VOLUME_KEY_CURSOR_CONTROL, 0)));
         mVolumeKeyCursorControl.setSummary(mVolumeKeyCursorControl.getEntry());
+
+        mKillAppLongpressBack = (CheckBoxPreference) findPreference(PREF_KILL_APP_LONGPRESS_BACK);
+                updateKillAppLongpressBackOptions();
+
+        boolean hasNavBarByDefault = mContext.getResources().getBoolean(
+                com.android.internal.R.bool.config_showNavigationBar);
+
+        if (hasNavBarByDefault || mTablet) {
+            ((PreferenceGroup) findPreference("misc")).removePreference(mKillAppLongpressBack);
+        }
+    }
+
+    private void writeKillAppLongpressBackOptions() {
+        Settings.System.putInt(getActivity().getContentResolver(),
+                Settings.System.KILL_APP_LONGPRESS_BACK, mKillAppLongpressBack.isChecked() ? 1 : 0);
+    }
+    
+    private void updateKillAppLongpressBackOptions() {
+        mKillAppLongpressBack.setChecked(Settings.System.getInt(getActivity().getContentResolver(),
+                Settings.System.KILL_APP_LONGPRESS_BACK, 0) != 0);
     }
 
     private void updateCustomLabelTextSummary() {
@@ -114,6 +137,8 @@ public class UserInterface extends SettingsPreferenceFragment implements Prefere
                     Settings.System.RECENT_KILL_ALL_BUTTON, checked ? 1 : 0);
             Helpers.restartSystemUI();
             return true;
+        } else if (preference == mKillAppLongpressBack) {
+            writeKillAppLongpressBackOptions();
         } else if (preference == mCustomLabel) {
             AlertDialog.Builder alert = new AlertDialog.Builder(getActivity());
 
