@@ -62,7 +62,7 @@ public class Toggles extends SettingsPreferenceFragment implements OnPreferenceC
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setTitle(R.string.title_statusbar_toggles);
+        setTitle(R.string.notification_drawer_toggles_title);
         // Load the preferences from an XML resource
         addPreferencesFromResource(R.xml.notification_drawer_toggles);
 

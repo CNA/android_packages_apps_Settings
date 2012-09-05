@@ -4243,7 +4243,6 @@
     <string name="toggleWimax">WiMax</string>
 
     <!-- Interface | Notification toggles -->
-    <string name="title_statusbar_toggles">Statusbar Toggles</string>
     <string name="toggle_style_title">Toggle style</string>
     <string name="toggle_style_summary">Whether to show icons or text on your toggles</string>
     <string name="toggles_layout_title">Toggle Layout</string>
