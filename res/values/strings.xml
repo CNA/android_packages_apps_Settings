@@ -4522,7 +4522,7 @@
     <string name="volume_adjust_sounds_enable_summary">Play sound when adjusting volume with hard keys</string>
     <string name="title_headphone_audio_mode">Headphones plugged in action</string>
     <string name="summary_headphone_audio_mode">What to do with sound when headphones are plugged in and out</string>
-    <string name="headphones_cat_title">Connect headphones actions</string>
+    <string name="headphones_cat_title">Headphones connected actions</string>
     <string name="title_bt_audio_mode">Bluetooth A2DP connected action</string>
     <string name="summary_bt_audio_mode">What to do with sound when A2DP is connected</string>
     <string name="headphones_mode_no_action">No action</string>
