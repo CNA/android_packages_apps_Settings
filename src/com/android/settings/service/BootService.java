@@ -49,6 +49,15 @@ public class BootService extends Service {
             preferences = PreferenceManager.getDefaultSharedPreferences(c);
             final CMDProcessor cmd = new CMDProcessor();
 
+            if (HeadphoneService.getUserHeadphoneAudioMode(c) != -1
+                || HeadphoneService.getUserBTAudioMode(c) != -1) {
+                c.startService(new Intent(c, HeadphoneService.class));
+            }
+
+            if (FlipService.getUserFlipAudioMode(c) != -1
+                || FlipService.getUserCallSilent(c) != 0)
+                c.startService(new Intent(c, FlipService.class));
+
             if (preferences.getBoolean("cpu_boot", false)) {
                 final String max = preferences.getString(
                         "max_cpu", null);

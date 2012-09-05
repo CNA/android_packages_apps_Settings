@@ -16,18 +16,22 @@
 
 package com.android.settings.cnd;
 
+import android.app.AlertDialog;
 import android.content.ContentResolver;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.res.Configuration;
 import android.content.res.Resources;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.RemoteException;
 import android.os.ServiceManager;
 import android.preference.CheckBoxPreference;
 import android.preference.ListPreference;
 import android.preference.Preference;
+import android.preference.PreferenceManager;
 import android.preference.PreferenceScreen;
 import android.provider.Settings;
 import android.util.Log;
@@ -35,6 +39,8 @@ import android.view.IWindowManager;
 import android.view.VolumePanel;
 
 import com.android.settings.R;
+import com.android.settings.service.FlipService;
+import com.android.settings.service.HeadphoneService;
 import com.android.settings.SettingsPreferenceFragment;
 import com.android.settings.Utils;
 
@@ -46,13 +52,26 @@ public class SoundSettings extends SettingsPreferenceFragment implements
     private static final String KEY_SAFE_HEADSET_RESTORE = "safe_headset_restore";
     private static final String KEY_VOLBTN_MUSIC_CTRL = "volbtn_music_controls";
     private static final String KEY_VOLUME_ADJUST_SOUNDS = "volume_adjust_sounds";
+    private static final String PREF_HEADPHONES_PLUGGED_ACTION = "headphone_audio_mode";
+    private static final String PREF_BT_CONNECTED_ACTION = "bt_audio_mode";
+    private static final String PREF_FLIP_ACTION = "flip_mode";
+    private static final String PREF_USER_TIMEOUT = "user_timeout";
+    private static final String PREF_USER_DOWN_MS = "user_down_ms";
+    private static final String PREF_PHONE_RING_SILENCE = "phone_ring_silence";
 
     private final Configuration mCurConfig = new Configuration();
 
+    private SharedPreferences prefs;
     private ListPreference mVolumeOverlay;
     private CheckBoxPreference mSafeHeadsetRestore;
     private CheckBoxPreference mVolBtnMusicCtrl;
     private CheckBoxPreference mVolumeAdjustSounds;
+    private ListPreference mHeadphonesPluggedAction;
+    private ListPreference mBTPluggedAction;
+    private ListPreference mFlipAction;
+    private ListPreference mUserDownMS;
+    private ListPreference mFlipScreenOff;
+    private ListPreference mPhoneSilent;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -60,6 +79,8 @@ public class SoundSettings extends SettingsPreferenceFragment implements
         ContentResolver resolver = getContentResolver();
 
         addPreferencesFromResource(R.xml.sound_settings_rom);
+        PreferenceManager.setDefaultValues(mContext, R.xml.sound_settings_rom, true);
+        prefs = PreferenceManager.getDefaultSharedPreferences(mContext);
 
         mVolumeOverlay = (ListPreference) findPreference(KEY_VOLUME_OVERLAY);
         mVolumeOverlay.setOnPreferenceChangeListener(this);
@@ -83,6 +104,25 @@ public class SoundSettings extends SettingsPreferenceFragment implements
         mVolumeAdjustSounds.setChecked(Settings.System.getInt(resolver,
                 Settings.System.VOLUME_ADJUST_SOUNDS_ENABLED, 1) != 0);
 
+        mFlipAction = (ListPreference) findPreference(PREF_FLIP_ACTION);
+        mFlipAction.setOnPreferenceChangeListener(this);
+        mFlipAction.setValue((prefs.getString(PREF_FLIP_ACTION, "-1")));
+        
+        mUserDownMS = (ListPreference) findPreference(PREF_USER_DOWN_MS);
+        mUserDownMS.setEnabled(Integer.parseInt(prefs.getString(PREF_FLIP_ACTION, "-1")) != -1);
+        
+        mFlipScreenOff = (ListPreference) findPreference(PREF_USER_TIMEOUT);
+        mFlipScreenOff.setEnabled(Integer.parseInt(prefs.getString(PREF_FLIP_ACTION, "-1")) != -1);
+        
+        mPhoneSilent = (ListPreference) findPreference(PREF_PHONE_RING_SILENCE);
+        mPhoneSilent.setValue((prefs.getString(PREF_PHONE_RING_SILENCE, "0")));
+        mPhoneSilent.setOnPreferenceChangeListener(this);
+        
+        if (HeadphoneService.DEBUG)
+            mContext.startService(new Intent(mContext, HeadphoneService.class));
+        
+        if (FlipService.DEBUG)
+            mContext.startService(new Intent(mContext, FlipService.class));
     }
     
     @Override
@@ -125,6 +165,13 @@ public class SoundSettings extends SettingsPreferenceFragment implements
         return true;
     }
 
+    private void toggleFlipService() {
+        if (FlipService.isStarted()) {
+            mContext.stopService(new Intent(mContext, FlipService.class));
+        }
+        mContext.startService(new Intent(mContext, FlipService.class));
+    }
+
     public boolean onPreferenceChange(Preference preference, Object objValue) {
         final String key = preference.getKey();
         
@@ -134,8 +181,38 @@ public class SoundSettings extends SettingsPreferenceFragment implements
             Settings.System.putInt(getContentResolver(),
                     Settings.System.MODE_VOLUME_OVERLAY, value);
             mVolumeOverlay.setSummary(mVolumeOverlay.getEntries()[index]);
+            return true;
+        } else if (preference == mFlipAction) {
+            int val = Integer.parseInt((String) objValue);
+            if (val != -1) {
+                mUserDownMS.setEnabled(true);
+                mFlipScreenOff.setEnabled(true);
+                AlertDialog.Builder ad = new AlertDialog.Builder(getActivity());
+                ad.setTitle(getResources().getString(R.string.flip_dialog_title));
+                ad.setMessage(getResources().getString(R.string.flip_dialog_msg));
+                ad.setPositiveButton(
+                        getResources().getString(R.string.flip_action_positive),
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        });
+                ad.show();
+                toggleFlipService();
+            } else {
+                mUserDownMS.setEnabled(false);
+                mFlipScreenOff.setEnabled(false);
+            }
+            return true;
+                
+        } else if (preference == mPhoneSilent) {
+            int val = Integer.parseInt((String) objValue);
+            if (val != 0) {
+                toggleFlipService();
+            }
+            return true;
         }
-        
-        return true;
+        return false;
     }
 }
