@@ -1900,7 +1900,18 @@
         <item>@string/toggle_torch</item>
         <item>@string/toggle_sync</item>
     </string-array>
+
+    <!-- Power widget brightness slider -->
+    <string-array name="power_widget_brightness_location_entries">
+        <item>Show</item>
+        <item>Don\'t Show</item>
+    </string-array>
     
+    <string-array name="power_widget_brightness_location_values" translatable="false">
+        <item>2</item>
+        <item>3</item>
+    </string-array>
+
     <!-- Brightness slider -->
     <string-array name="brightness_location_entries">
         <item>On top</item>
