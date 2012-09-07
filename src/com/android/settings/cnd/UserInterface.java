@@ -57,12 +57,14 @@ public class UserInterface extends SettingsPreferenceFragment implements Prefere
     private static final String PREF_RECENT_KILL_ALL = "recent_kill_all";
     private static final String VOLUME_KEY_CURSOR_CONTROL = "volume_key_cursor_control";
     private static final String PREF_KILL_APP_LONGPRESS_BACK = "kill_app_longpress_back";
+    private static final String PREF_ALARM_ENABLE = "alarm";
 
     Preference mCustomLabel;
     CheckBoxPreference mStatusBarImeSwitcher;
     CheckBoxPreference mRecentKillAll;
     ListPreference mVolumeKeyCursorControl;
     CheckBoxPreference mKillAppLongpressBack;
+    CheckBoxPreference mAlarm;
 
     String mCustomLabelText = null;
 
@@ -95,6 +97,10 @@ public class UserInterface extends SettingsPreferenceFragment implements Prefere
 
         mKillAppLongpressBack = (CheckBoxPreference) findPreference(PREF_KILL_APP_LONGPRESS_BACK);
                 updateKillAppLongpressBackOptions();
+        
+        mAlarm = (CheckBoxPreference) findPreference(PREF_ALARM_ENABLE);
+        mAlarm.setChecked(Settings.System.getInt(getActivity().getContentResolver(),
+                    Settings.System.STATUSBAR_SHOW_ALARM, 1) == 1);
 
         boolean hasNavBarByDefault = mContext.getResources().getBoolean(
                 com.android.internal.R.bool.config_showNavigationBar);
@@ -139,6 +145,10 @@ public class UserInterface extends SettingsPreferenceFragment implements Prefere
             return true;
         } else if (preference == mKillAppLongpressBack) {
             writeKillAppLongpressBackOptions();
+        } else if (preference == mAlarm) {
+            boolean checked = ((CheckBoxPreference) preference).isChecked();
+            Settings.System.putInt(getActivity().getContentResolver(),
+                    Settings.System.STATUSBAR_SHOW_ALARM, checked ? 1 : 0);
         } else if (preference == mCustomLabel) {
             AlertDialog.Builder alert = new AlertDialog.Builder(getActivity());
 

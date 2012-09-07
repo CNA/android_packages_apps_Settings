@@ -4140,6 +4140,8 @@
     <string name="ime_switcher_notify_summary">Display input method selector notification</string>
     <string name="kill_app_longpress_back">Hold back to kill</string>
     <string name="kill_app_longpress_back_summary">Holding back will kill the current activity</string>
+    <string name="enable_alarm_icon_title">Enable alarm icon</string>
+    <string name="enable_alarm_icon__summary">After disabling or enabling, you must toggle your alarms for it take affect</string>
 
     <!-- Interface | Power menu -->
     <string name="power_menu_reboot_title">Reboot menu</string>
