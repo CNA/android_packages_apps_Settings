@@ -4235,6 +4235,7 @@
     <string name="toggleData">Mobile Data</string>
     <string name="toggleSync">Data Sync</string>
     <string name="toggle2g3g">2G/3G</string>
+    <string name="toggle_2g">2G</string>
     <string name="toggleSound">Ring Mode</string>
     <string name="toggleBrightness">Brightness</string>
     <string name="toggleAutoRotate">Orientation</string>
