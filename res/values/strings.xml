@@ -4328,10 +4328,6 @@
     <string name="glow_times_quick">Quick</string>
     <string name="glow_times_normal">Normal</string>
     <string name="navigation_bar_style">Navigation bar style</string>
-    <string name="interface_navbar_color_title">Navigation bar color</string>
-    <string name="interface_navbar_color_summary">Change the color of the navigation bar</string>
-    <string name="interface_navbar_restore_stock_color">Restore stock navigation bar color</string>
-    <string name="interface_navbar_restore_stock_color_summary">Restore stock black color of the navigation bar</string>
     <string name="button_transparency_title">Navigation button transparency</string>
     <string name="menu_nav_bar_reset">Reset navigation bar</string>
     <string name="dpi">DPI</string>
