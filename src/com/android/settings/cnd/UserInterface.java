@@ -79,10 +79,15 @@ public class UserInterface extends SettingsPreferenceFragment implements Prefere
         mCustomLabel = findPreference(PREF_CUSTOM_CARRIER_LABEL);
         updateCustomLabelTextSummary();
 
-        mStatusBarImeSwitcher = (CheckBoxPreference) findPreference(KEY_IME_SWITCHER);
-        if (mStatusBarImeSwitcher != null) {
-            mStatusBarImeSwitcher.setChecked(Settings.System.getInt(getActivity().getContentResolver(),
-                    Settings.System.STATUS_BAR_IME_SWITCHER, 0) != 0);
+        // Enable or disable mStatusBarImeSwitcher based on boolean value: config_show_cmIMESwitcher
+        if (!getResources().getBoolean(com.android.internal.R.bool.config_show_cmIMESwitcher)) {
+            getPreferenceScreen().removePreference(findPreference(KEY_IME_SWITCHER));
+        } else {
+            mStatusBarImeSwitcher = (CheckBoxPreference) findPreference(KEY_IME_SWITCHER);
+            if (mStatusBarImeSwitcher != null) {
+                mStatusBarImeSwitcher.setChecked(Settings.System.getInt(getActivity().getContentResolver(),
+                        Settings.System.STATUS_BAR_IME_SWITCHER, 0) != 0);
+            }
         }
 
         mRecentKillAll = (CheckBoxPreference) findPreference(PREF_RECENT_KILL_ALL);
