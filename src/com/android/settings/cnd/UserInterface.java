@@ -86,7 +86,7 @@ public class UserInterface extends SettingsPreferenceFragment implements Prefere
             mStatusBarImeSwitcher = (CheckBoxPreference) findPreference(KEY_IME_SWITCHER);
             if (mStatusBarImeSwitcher != null) {
                 mStatusBarImeSwitcher.setChecked(Settings.System.getInt(getActivity().getContentResolver(),
-                        Settings.System.STATUS_BAR_IME_SWITCHER, 0) != 0);
+                        Settings.System.STATUS_BAR_IME_SWITCHER, 1) != 0);
             }
         }
 
