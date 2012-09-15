@@ -4121,7 +4121,6 @@
     <string name="notification_drawer_title">Notification power widget</string>
     <string name="notification_drawer_toggles_title">Notification toggles</string>
     <string name="navigation_bar_title">Navigation bar</string>
-    <string name="interface_navring_settings">Navigation bar ring</string>
     <string name="hardware_keys_title">Hardware keys</string>
     <string name="lock_screen_title">Lock screen</string>
 
@@ -4333,12 +4332,10 @@
     <string name="dpi">DPI</string>
 
     <!-- Interface | Navigation ring bar -->
+    <string name="navbar_ring_cat">Navigation Bar Ring Targets</string>
     <string name="interface_navring">Ring Targets</string>
     <string name="interface_navring_custom_pref_summary">Release on target to launch </string>
     <string name="interface_navring_pref_default_summary">Tap to select a custom ring target activity</string>
-    <string name="interface_navring_1">Ring Target 1</string>
-    <string name="interface_navring_2">Ring Target 2</string>
-    <string name="interface_navring_3">Ring Target 3</string>
     <string name="interface_navring_assist_title">Google Now</string>
     <string name="interface_softkey_settings">Softkey Settings</string>
     <string name="interface_softkeys_pref_default_title">No Activity Selected</string>
@@ -4349,6 +4346,10 @@
     <string name="interface_softkeys_screenoff_title">Screen Off</string>
     <string name="interface_softkeys_kill_process_title">Kill App</string>
     <string name="interface_softkey_package_removed">The previously selected package was not found</string>
+    <string name="title_navring_amount">Number of navigation ring targets</string>
+    <string name="summary_navring_amount">Choose the number of ring targets</string>
+    <string name="interface_navring_settings_title">Navigation bar ring</string>
+    <string name="interface_navring_settings_summary">Edit your custom nav ring apps</string>
 
     <!-- Interface | Hardware keys -->
     <string name="hardware_keys_bindings_title">Key actions</string>

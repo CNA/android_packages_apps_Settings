@@ -1859,6 +1859,22 @@
         <item>app</item>
     </string-array>
 
+    <string-array name="pref_navring_amount_entries">
+        <item>1 target</item>
+        <item>2 targets</item>
+        <item>3 targets</item>
+        <item>4 targets</item>
+        <item>5 targets</item>
+    </string-array>
+
+    <string-array name="pref_navring_amount_values">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+    </string-array>
+
     <!-- toggle style -->
     <string-array name="toggle_style_entries">
         <item>Icon only</item>
