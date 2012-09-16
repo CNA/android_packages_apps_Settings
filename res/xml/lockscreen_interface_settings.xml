@@ -40,11 +40,11 @@
         <ListPreference
             android:key="lockscreen_widgets"
             android:persistent="false"
-            android:dialogTitle="@string/lockscreen_widgets_title"
-            android:title="@string/lockscreen_widgets_title"
+            android:dialogTitle="@string/lockscreen_targets_widget_title"
+            android:title="@string/lockscreen_targets_widget_title"
             android:entries="@array/lockscreen_widgets_entries"
             android:entryValues="@array/lockscreen_widgets_values"
-            android:summary="@string/lockscreen_widgets_summary" />
+            android:summary="@string/lockscreen_targets_widget_summary" />
         
         <net.margaritov.preference.colorpicker.ColorPickerPreference
             android:key="lockscreen_text_color"
