@@ -1830,15 +1830,11 @@
     <string-array name="lockscreen_widgets_values">  
         <item>0</item>  
         <item>1</item>
-        <item>2</item>  
-        <item>3</item>
     </string-array>
     
     <string-array name="lockscreen_widgets_entries">
         <item>1-5 Targets</item>
-        <item>1-5 Targets Centered</item>
         <item>6-8 Targets</item>  
-        <item>6-8 Targets Centered</item>
     </string-array>
 
     <string-array name="navring_dialog_entries">
