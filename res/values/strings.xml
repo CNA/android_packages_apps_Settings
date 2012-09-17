@@ -4883,10 +4883,6 @@
     <string name="tts_play_example_not_found_title">Warning</string>
     <string name="tts_play_example_not_found_msg">A text string sample wasn\'t found for the requested language</string>
 
-    <!-- Stylus Icon -->
-    <string name="stylus_icon_enabled_title">Show icon when using stylus</string>
-    <string name="stylus_icon_enabled_summary">Show the pointer icon when hovering or drawing with the stylus</string>
-
     <!-- Developer options | Tools & information -->
     <string name="developer_tools_and_info_title">Tools &amp; information</string>
     <string name="development_tools_title">Developer tools</string>
