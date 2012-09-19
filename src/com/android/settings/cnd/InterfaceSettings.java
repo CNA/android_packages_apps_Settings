@@ -45,6 +45,7 @@ public class InterfaceSettings extends SettingsPreferenceFragment implements
     private PreferenceScreen mPhoneDrawer;
     private PreferenceScreen mPhoneToggles;
     private PreferenceScreen mTabletDrawer;
+    private PreferenceScreen mHardwareKeys;
 
     private final Configuration mCurConfig = new Configuration();
 
@@ -57,11 +58,13 @@ public class InterfaceSettings extends SettingsPreferenceFragment implements
         mPhoneDrawer = (PreferenceScreen) findPreference(KEY_NOTIFICATION_DRAWER_POWER_WIDGET);
         mPhoneToggles = (PreferenceScreen) findPreference(KEY_NOTIFICATION_DRAWER_TOGGLES);
         mTabletDrawer = (PreferenceScreen) findPreference(KEY_NOTIFICATION_DRAWER_TABLET);
+        mHardwareKeys = (PreferenceScreen) findPreference(KEY_HARDWARE_KEYS);
 
         if (Utils.isTablet(getActivity())) {
             if (mPhoneDrawer != null) {
                 getPreferenceScreen().removePreference(mPhoneDrawer);
                 getPreferenceScreen().removePreference(mPhoneToggles);
+                getPreferenceScreen().removePreference(mHardwareKeys);
             }
         } else {
             if (mTabletDrawer != null) {
