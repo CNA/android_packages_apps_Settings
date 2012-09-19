@@ -4670,15 +4670,26 @@
     <string name="pt_enable_cron">Enable scheduled tasks</string>
     <string name="ps_enable_cron">Enable scheduled cron jobs</string>
     
-    <!-- Performance | CPU Settings -->
-    <string name="processor_title">CPU settings</string>
+    <!-- Performance | Processor speed -->
+    <string name="processor_title">Processor speed</string>
     <string name="processor_summary">Change CPU governor and clock speed</string>
-    <string name="current_speed">Current Speed</string>
-    <string name="current_max">Current max:</string>
-    <string name="current_min">Current min:</string>
-    <string name="governor">Governor</string>
-    <string name="io">IO Scheduler</string>
-    <string name="sob">Set on boot</string>
+    <string name="cpu_cur_freq_title">Current CPU frequency</string>
+    <string name="cpu_governors_title">CPU governor</string>
+    <string name="cpu_governors_summary">%S</string>
+    <string name="cpu_min_freq_title">Minimum CPU frequency</string>
+    <string name="cpu_min_freq_summary">%s</string>
+    <string name="cpu_max_freq_title">Maximum CPU frequency</string>
+    <string name="cpu_max_freq_summary">%s</string>
+    <string name="cpu_set_on_boot">Set on boot</string>
+    <string name="cpu_set_on_boot_summary">Restore the processor settings on boot</string>
+    
+    <!-- Performance | I/O scheduler -->
+    <string name="io_scheds_title">I/O scheduler</string>
+    <string name="io_scheds_summary">Change I/O scheduler</string>
+    <string name="io_sched_title">I/O scheduler</string>
+    <string name="io_sched_summary">%S</string>
+    <string name="io_sched_set_on_boot">Set on boot</string>
+    <string name="io_sched_set_on_boot_summary">Restore the I/O scheduler settings on boot</string>
 
     <!-- Performance | Voltage Control -->
     <string name="cpu_voltage">Voltage control</string>
@@ -4694,6 +4705,7 @@
     <string name="freq">Frequency</string>
     <string name="current">mV current</string>
     <string name="saved">mV saved</string>
+    <string name="sob">Set on boot</string>
 
     <!-- Performance | Kernel Controls -->
     <string name="tweaks_and_overclocking_title">Tweaks and Overclocking</string>

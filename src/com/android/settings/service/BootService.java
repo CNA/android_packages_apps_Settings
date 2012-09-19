@@ -20,7 +20,6 @@ import java.util.List;
 
 import com.android.settings.R;
 
-import com.android.settings.performance.CPUSettings;
 import com.android.settings.performance.Voltage;
 import com.android.settings.performance.VoltageControlSettings;
 import com.android.settings.util.CMDProcessor;
@@ -57,37 +56,6 @@ public class BootService extends Service {
             if (FlipService.getUserFlipAudioMode(c) != -1
                 || FlipService.getUserCallSilent(c) != 0)
                 c.startService(new Intent(c, FlipService.class));
-
-            if (preferences.getBoolean("cpu_boot", false)) {
-                final String max = preferences.getString(
-                        "max_cpu", null);
-                final String min = preferences.getString(
-                        "min_cpu", null);
-                final String gov = preferences.getString(
-                        "gov", null);
-                final String io = preferences.getString("io", null);
-                if (max != null && min != null && gov != null) {
-                    cmd.su.runWaitFor("busybox echo " + max +
-                            " > " + CPUSettings.MAX_FREQ);
-                    cmd.su.runWaitFor("busybox echo " + min +
-                            " > " + CPUSettings.MIN_FREQ);
-                    cmd.su.runWaitFor("busybox echo " + gov +
-                            " > " + CPUSettings.GOVERNOR);
-                    cmd.su.runWaitFor("busybox echo " + io +
-                            " > " + CPUSettings.IO_SCHEDULER);
-                    if (new File("/sys/devices/system/cpu/cpu1").exists()) {
-                        cmd.su.runWaitFor("busybox echo " + max +
-                                " > " + CPUSettings.MAX_FREQ
-                                .replace("cpu0", "cpu1"));
-                        cmd.su.runWaitFor("busybox echo " + min +
-                                " > " + CPUSettings.MIN_FREQ
-                                .replace("cpu0", "cpu1"));
-                        cmd.su.runWaitFor("busybox echo " + gov +
-                                " > " + CPUSettings.GOVERNOR
-                                .replace("cpu0", "cpu1"));
-                    }
-                }
-            }
 
             if (preferences.getBoolean(VoltageControlSettings
                     .KEY_APPLY_BOOT, false)) {
