@@ -40,7 +40,6 @@ import android.view.VolumePanel;
 
 import com.android.settings.R;
 import com.android.settings.service.FlipService;
-import com.android.settings.service.HeadphoneService;
 import com.android.settings.SettingsPreferenceFragment;
 import com.android.settings.Utils;
 
@@ -52,8 +51,6 @@ public class SoundSettings extends SettingsPreferenceFragment implements
     private static final String KEY_SAFE_HEADSET_RESTORE = "safe_headset_restore";
     private static final String KEY_VOLBTN_MUSIC_CTRL = "volbtn_music_controls";
     private static final String KEY_VOLUME_ADJUST_SOUNDS = "volume_adjust_sounds";
-    private static final String PREF_HEADPHONES_PLUGGED_ACTION = "headphone_audio_mode";
-    private static final String PREF_BT_CONNECTED_ACTION = "bt_audio_mode";
     private static final String PREF_FLIP_ACTION = "flip_mode";
     private static final String PREF_USER_TIMEOUT = "user_timeout";
     private static final String PREF_USER_DOWN_MS = "user_down_ms";
@@ -66,8 +63,6 @@ public class SoundSettings extends SettingsPreferenceFragment implements
     private CheckBoxPreference mSafeHeadsetRestore;
     private CheckBoxPreference mVolBtnMusicCtrl;
     private CheckBoxPreference mVolumeAdjustSounds;
-    private ListPreference mHeadphonesPluggedAction;
-    private ListPreference mBTPluggedAction;
     private ListPreference mFlipAction;
     private ListPreference mUserDownMS;
     private ListPreference mFlipScreenOff;
@@ -117,9 +112,6 @@ public class SoundSettings extends SettingsPreferenceFragment implements
         mPhoneSilent = (ListPreference) findPreference(PREF_PHONE_RING_SILENCE);
         mPhoneSilent.setValue((prefs.getString(PREF_PHONE_RING_SILENCE, "0")));
         mPhoneSilent.setOnPreferenceChangeListener(this);
-        
-        if (HeadphoneService.DEBUG)
-            mContext.startService(new Intent(mContext, HeadphoneService.class));
         
         if (FlipService.DEBUG)
             mContext.startService(new Intent(mContext, FlipService.class));
