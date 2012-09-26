@@ -41,6 +41,17 @@
             android:title="@string/enable_alarm_icon_title"
             android:summary="@string/enable_alarm_icon__summary" />
 
+        <CheckBoxPreference
+            android:key="mode_tabletui"
+            android:title="@string/tablet_ui"
+            android:summary="@string/tablet_ui_summary"
+            android:defaultValue="false" />
+
+        <Preference
+            android:key="lcd_density_setup"
+            android:title="@string/lcd_density_title"
+            android:summary="@string/lcd_density_summary" />
+
     </PreferenceCategory>
 
 </PreferenceScreen>
