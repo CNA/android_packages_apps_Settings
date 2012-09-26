@@ -68,6 +68,11 @@
             android:title="@string/clock_color_title"
             android:defaultValue="@android:color/holo_blue_light" />
 
+        <CheckBoxPreference
+            android:key="alt_signal"
+            android:title="@string/alt_signal_title"
+            android:summary="@string/alt_signal_summary" />
+
         <ListPreference
             android:key="clock_am_pm_style"
             android:title="@string/title_clock_ampm_entries"

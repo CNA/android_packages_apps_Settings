@@ -57,6 +57,7 @@ public class StatusBarSettings extends SettingsPreferenceFragment implements
     ListPreference mWifiStyle;
     ColorPickerPreference mWifiColorPicker;
     CheckBoxPreference mHideSignal;
+    CheckBoxPreference mAltSignal;
     CheckBoxPreference mStatusBarBrightnessControl;
     CheckBoxPreference mStatusBarNotifCount;
 
@@ -151,6 +152,10 @@ public class StatusBarSettings extends SettingsPreferenceFragment implements
         mHideSignal.setChecked(Settings.System.getInt(getActivity()
                 .getContentResolver(), Settings.System.STATUSBAR_HIDE_SIGNAL_BARS,
                 0) != 0);
+
+        mAltSignal = (CheckBoxPreference) findPreference("alt_signal");
+        mAltSignal.setChecked(Settings.System.getBoolean(getContentResolver(),
+                Settings.System.STATUSBAR_SIGNAL_CLUSTER_ALT,false));
         
         mStatusBarBrightnessControl = (CheckBoxPreference) findPreference(STATUS_BAR_BRIGHTNESS_CONTROL);
         mStatusBarBrightnessControl.setChecked((Settings.System.getInt(
@@ -209,6 +214,10 @@ public class StatusBarSettings extends SettingsPreferenceFragment implements
             Settings.System.putInt(getActivity().getContentResolver(),
                     Settings.System.STATUSBAR_HIDE_SIGNAL_BARS,
                     ((CheckBoxPreference) preference).isChecked() ? 1 : 0);
+            return true;
+        } else if (preference == mAltSignal) {
+            Settings.System.putBoolean(getContentResolver(),
+                    Settings.System.STATUSBAR_SIGNAL_CLUSTER_ALT,mAltSignal.isChecked());
             return true;
 
         }
