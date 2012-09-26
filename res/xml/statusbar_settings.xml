@@ -43,7 +43,7 @@
         <net.margaritov.preference.colorpicker.ColorPickerPreference
             android:key="battery_bar_color"
             android:title="@string/battery_bar_color"
-            android:defaultValue="#33B5E5" />
+            android:defaultValue="@android:color/holo_blue_light" />
 
         <CheckBoxPreference
             android:key="alt_signal"
