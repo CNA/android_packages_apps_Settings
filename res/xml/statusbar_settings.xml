@@ -44,6 +44,11 @@
             android:key="battery_bar_color"
             android:title="@string/battery_bar_color"
             android:defaultValue="#33B5E5" />
+
+        <CheckBoxPreference
+            android:key="alt_signal"
+            android:title="@string/alt_signal_title"
+            android:summary="@string/alt_signal_summary" />
         
         <ListPreference
             android:key="battery_bar_thickness"
@@ -67,11 +72,6 @@
             android:key="clock_color"
             android:title="@string/clock_color_title"
             android:defaultValue="@android:color/holo_blue_light" />
-
-        <CheckBoxPreference
-            android:key="alt_signal"
-            android:title="@string/alt_signal_title"
-            android:summary="@string/alt_signal_summary" />
 
         <ListPreference
             android:key="clock_am_pm_style"
