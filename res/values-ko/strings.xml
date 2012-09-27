@@ -2292,7 +2292,7 @@
     <string name="pref_disable_bootanimation_summary">더 빠른 부팅을 위해 부트 애니를 스킵 합니다</string>
     <string name="performance_settings_warning_header">경고</string>
     <string name="performance_settings_warning_title">주의와 함께 진행</string>
-    <string name="performance_settings_warning">이 설정의 기능들은 실험적,불안전한 기능 입니다 충돌, 데이터 손실 또는 하드웨어 오류가 일어날 수 있습니다.<string>
+    <string name="performance_settings_warning">이 설정의 기능들은 실험적,불안전한 기능 입니다 충돌, 데이터 손실 또는 하드웨어 오류가 일어날 수 있습니다.</string>
     <string name="profiles_general_title">일반</string>
     <string name="profiles_add">추가하기</string>
     <string name="profile_menu_delete">지우기</string>
