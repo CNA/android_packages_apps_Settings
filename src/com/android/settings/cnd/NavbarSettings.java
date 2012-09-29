@@ -4,6 +4,7 @@ package com.android.settings.cnd;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
 
@@ -14,6 +15,7 @@ import android.app.ListFragment;
 import android.appwidget.AppWidgetHost;
 import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProviderInfo;
+import android.content.ActivityNotFoundException;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -102,6 +104,9 @@ public class NavbarSettings extends SettingsPreferenceFragment implements
     ListPreference mNavigationBarWidth;
     SeekBarPreference mButtonAlpha;
 
+    private File customnavImage;
+    private File customnavTemp;
+
     private int mPendingIconIndex = -1;
     private int mPendingWidgetDrawer = -1;
     private NavBarCustomAction mPendingNavBarCustomAction = null;
@@ -126,6 +131,9 @@ public class NavbarSettings extends SettingsPreferenceFragment implements
         PreferenceScreen prefs = getPreferenceScreen();
 
         mPicker = new ShortcutPickerHelper(this, this);
+
+        customnavImage = new File(getActivity().getFilesDir()+"navbar_icon_" + mPendingIconIndex + ".png");
+        customnavTemp = new File(getActivity().getCacheDir()+"/"+"tmp_icon_" + mPendingIconIndex + ".png");
 
         mNavRingTargets = findPreference("navring_settings");
 
@@ -490,7 +498,11 @@ public class NavbarSettings extends SettingsPreferenceFragment implements
                     return; // NOOOOO
                 }
 
-                Uri selectedImageUri = getTempFileUri();
+                if (customnavTemp.exists()) {
+                    customnavTemp.renameTo(customnavImage);
+                }
+
+                Uri selectedImageUri = Uri.fromFile(customnavImage);
                 Log.e(TAG, "Selected image path: " + selectedImageUri.getPath());
                 Bitmap bitmap = BitmapFactory.decodeFile(selectedImageUri.getPath());
                 bitmap.compress(Bitmap.CompressFormat.PNG, 100, iconStream);
@@ -564,6 +576,28 @@ public class NavbarSettings extends SettingsPreferenceFragment implements
             pAction.setImageListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    mPendingIconIndex = index;
+                    int width = 100;
+                    int height = width;
+                    
+                    Intent intent = new Intent(Intent.ACTION_GET_CONTENT, null);
+                    intent.setType("image/*");
+                    intent.putExtra("crop", "true");
+                    intent.putExtra("scale", true);
+                    intent.putExtra("outputFormat", Bitmap.CompressFormat.PNG.toString());
+                    intent.putExtra("aspectX", width);
+                    intent.putExtra("aspectY", height);
+                    intent.putExtra("outputX", width);
+                    intent.putExtra("outputY", height);
+                try {
+                    customnavTemp.createNewFile();
+                    customnavTemp.setWritable(true, false);
+                    intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(customnavTemp));
+                    intent.putExtra("return-data", false);
+                    startActivityForResult(intent, REQUEST_PICK_CUSTOM_ICON);
+                } catch (IOException e) {
+                } catch (ActivityNotFoundException e) {
+                }
                 }
             });
 
@@ -718,12 +752,6 @@ public class NavbarSettings extends SettingsPreferenceFragment implements
             }
             mPendingNavBarCustomAction.preference.setSummary(friendlyName);
         }
-    }
-
-    private Uri getTempFileUri() {
-        return Uri.fromFile(new File(Environment.getExternalStorageDirectory(),
-                "tmp_icon_" + mPendingIconIndex + ".png"));
-
     }
 
     private String getIconFileName(int index) {
