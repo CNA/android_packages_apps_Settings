@@ -39,6 +39,7 @@ public class StatusBarSettings extends SettingsPreferenceFragment implements
     private static final String PREF_WIFI_SIGNAL_STYLE = "wifi_signal_style";
     private static final String PREF_WIFI_SIGNAL_COLOR = "wifi_signal_color";
     private static final String PREF_HIDE_SIGNAL = "hide_signal";
+    private static final String STATUS_BAR_TRANSPARENCY = "status_bar_transparency";
 
 
     ListPreference mBatteryIcon;
@@ -60,6 +61,7 @@ public class StatusBarSettings extends SettingsPreferenceFragment implements
     CheckBoxPreference mAltSignal;
     CheckBoxPreference mStatusBarBrightnessControl;
     CheckBoxPreference mStatusBarNotifCount;
+    ListPreference mStatusbarTransparency;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -67,6 +69,12 @@ public class StatusBarSettings extends SettingsPreferenceFragment implements
 
         // Load the preferences from an XML resource
         addPreferencesFromResource(R.xml.statusbar_settings);
+
+        mStatusbarTransparency = (ListPreference) findPreference(STATUS_BAR_TRANSPARENCY);
+        int statusBarTransparency = Settings.System.getInt(getActivity().getApplicationContext().getContentResolver(),
+                Settings.System.STATUS_BAR_TRANSPARENCY, 100);
+        mStatusbarTransparency.setValue(String.valueOf(statusBarTransparency));
+        mStatusbarTransparency.setOnPreferenceChangeListener(this);
 
         mBatteryIcon = (ListPreference) findPreference(PREF_BATT_ICON);
         mBatteryIcon.setOnPreferenceChangeListener(this);
@@ -215,6 +223,7 @@ public class StatusBarSettings extends SettingsPreferenceFragment implements
                     Settings.System.STATUSBAR_HIDE_SIGNAL_BARS,
                     ((CheckBoxPreference) preference).isChecked() ? 1 : 0);
             return true;
+
         } else if (preference == mAltSignal) {
             Settings.System.putBoolean(getContentResolver(),
                     Settings.System.STATUSBAR_SIGNAL_CLUSTER_ALT,mAltSignal.isChecked());
@@ -316,6 +325,11 @@ public class StatusBarSettings extends SettingsPreferenceFragment implements
             int intHex = ColorPickerPreference.convertToColorInt(hex);
             result = Settings.System.putInt(getActivity().getContentResolver(),
                     Settings.System.STATUSBAR_WIFI_SIGNAL_TEXT_COLOR, intHex);
+
+        } else if (preference == mStatusbarTransparency) {
+            int statusBarTransparency = Integer.valueOf((String) newValue);
+            result = Settings.System.putInt(getActivity().getContentResolver(),
+                    Settings.System.STATUS_BAR_TRANSPARENCY, statusBarTransparency);
 
         }
         return result;

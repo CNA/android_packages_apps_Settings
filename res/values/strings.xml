@@ -4162,6 +4162,8 @@
     <string name="power_menu_silenttoggle_title">Silent toggle</string>
 
     <!-- Interface | Status bar -->
+    <string name="status_bar_transparency_title">Statusbar Transparency</string>
+    <string name="status_bar_transparency_summary">Adjust statusbar transparency</string>
     <string name="battery_icon_category">Battery icon options</string>
     <string name="battery_icon">Battery icon style</string>
     <string name="battery_not_title">Battery icon in notifications</string>
