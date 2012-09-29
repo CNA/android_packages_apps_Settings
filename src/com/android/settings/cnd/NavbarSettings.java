@@ -56,6 +56,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.settings.cnd.ColorPreference;
 import com.android.settings.cnd.NavRingTargets;
 import com.android.settings.SettingsPreferenceFragment;
 import com.android.settings.R;
@@ -67,7 +68,7 @@ import com.android.settings.widgets.SeekBarPreference;
 import net.margaritov.preference.colorpicker.ColorPickerPreference;
 
 public class NavbarSettings extends SettingsPreferenceFragment implements
-        OnPreferenceChangeListener, ShortcutPickerHelper.OnPickListener {
+        OnPreferenceChangeListener, ShortcutPickerHelper.OnPickListener, Preference.OnPreferenceClickListener {
 
     // move these later
 	private static final String PREF_MENU_UNLOCK = "pref_menu_display";
@@ -103,6 +104,8 @@ public class NavbarSettings extends SettingsPreferenceFragment implements
     ListPreference mNavigationBarHeightLandscape;
     ListPreference mNavigationBarWidth;
     SeekBarPreference mButtonAlpha;
+    ColorPreference mNavBar;
+    Preference mStockColor;
 
     private File customnavImage;
     private File customnavTemp;
@@ -195,6 +198,13 @@ public class NavbarSettings extends SettingsPreferenceFragment implements
 
         mNavigationBarWidth = (ListPreference) findPreference("navigation_bar_width");
         mNavigationBarWidth.setOnPreferenceChangeListener(this);
+
+        mNavBar = (ColorPreference) findPreference("interface_navbar_color");
+        mNavBar.setProviderTarget(Settings.System.SYSTEMUI_NAVBAR_COLOR,
+                                  Settings.System.SYSTEMUI_NAVBAR_COLOR_DEF);
+        
+        mStockColor = (Preference) findPreference("interface_navbar_color_default");
+        mStockColor.setOnPreferenceClickListener(this);
 
         if (mTablet) {
             prefs.removePreference(mNavBarMenuDisplay);
@@ -395,6 +405,16 @@ public class NavbarSettings extends SettingsPreferenceFragment implements
                     Settings.System.SYSTEMUI_NAVRING_4, "none");
             Settings.System.putString(getActivity().getContentResolver(),
                     Settings.System.SYSTEMUI_NAVRING_5, "none");
+    }
+
+    @Override
+    public boolean onPreferenceClick(Preference pref) {
+        // TODO Auto-generated method stub
+        if (pref.equals(mStockColor)) {
+            Settings.System.putInt(getActivity().getContentResolver(),
+                    Settings.System.SYSTEMUI_NAVBAR_COLOR, -1);
+        }
+        return false;
     }
 
     @Override

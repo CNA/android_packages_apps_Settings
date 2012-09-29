@@ -89,6 +89,16 @@
         android:key="navigation_bar_style"
         android:title="@string/navigation_bar_style">
 
+        <com.android.settings.cnd.ColorPreference
+            android:key="interface_navbar_color"
+            android:title="@string/interface_navbar_color_title"
+            android:summary="@string/interface_navbar_color_summary" />
+    
+        <Preference
+            android:key="interface_navbar_color_default"
+            android:title="@string/interface_navbar_restore_stock_color"
+            android:summary="@string/interface_navbar_restore_stock_color_summary" />
+
         <net.margaritov.preference.colorpicker.ColorPickerPreference
             android:key="nav_button_color"
             android:title="@string/navigation_bar_tint_title"
