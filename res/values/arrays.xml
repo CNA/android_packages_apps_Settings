@@ -2163,7 +2163,7 @@
         <item>320</item>
     </string-array>
 
-    <string-array name="entries_status_bar_transparency">
+    <string-array name="entries_transparency">
         <item>0%</item>
         <item>25%</item>
         <item>50%</item>
@@ -2171,7 +2171,7 @@
         <item>100%</item>
     </string-array>
 
-    <string-array name="values_status_bar_transparency" translatable="false">
+    <string-array name="values_transparency" translatable="false">
         <item>100</item>
         <item>75</item>
         <item>50</item>

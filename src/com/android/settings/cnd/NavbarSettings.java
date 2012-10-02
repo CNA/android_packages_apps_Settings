@@ -70,6 +70,7 @@ public class NavbarSettings extends SettingsPreferenceFragment implements
         OnPreferenceChangeListener, ShortcutPickerHelper.OnPickListener, Preference.OnPreferenceClickListener {
 
     // move these later
+    private static final String NAV_BAR_TRANSPARENCY = "nav_bar_transparency";
 	private static final String PREF_MENU_UNLOCK = "pref_menu_display";
     private static final String PREF_NAVBAR_MENU_DISPLAY = "navbar_menu_display";
     private static final String PREF_NAVBAR_QTY = "navbar_qty";
@@ -93,6 +94,7 @@ public class NavbarSettings extends SettingsPreferenceFragment implements
     Preference mNavRingTargets;
 
     // move these later
+    ListPreference mNavigationBarTransparency;
     ColorPickerPreference mNavigationBarColor;
     ColorPickerPreference mNavigationBarGlowColor;
     ListPreference mGlowTimes;
@@ -140,6 +142,12 @@ public class NavbarSettings extends SettingsPreferenceFragment implements
         customnavTemp = new File(getActivity().getCacheDir()+"/"+"tmp_icon_" + mPendingIconIndex + ".png");
 
         mNavRingTargets = findPreference("navring_settings");
+        
+        mNavigationBarTransparency = (ListPreference) findPreference(NAV_BAR_TRANSPARENCY);
+        int navBarTransparency = Settings.System.getInt(getActivity().getApplicationContext().getContentResolver(),
+                Settings.System.NAV_BAR_TRANSPARENCY, 100);
+        mNavigationBarTransparency.setValue(String.valueOf(navBarTransparency));
+        mNavigationBarTransparency.setOnPreferenceChangeListener(this);
 
         menuDisplayLocation = (ListPreference) findPreference(PREF_MENU_UNLOCK);
         menuDisplayLocation.setOnPreferenceChangeListener(this);
@@ -207,6 +215,7 @@ public class NavbarSettings extends SettingsPreferenceFragment implements
         mStockColor.setOnPreferenceClickListener(this);
 
         if (mTablet) {
+            prefs.removePreference(mNavigationBarTransparency);
             prefs.removePreference(mNavBarMenuDisplay);
         }
         refreshSettings();
@@ -280,8 +289,12 @@ public class NavbarSettings extends SettingsPreferenceFragment implements
 
     @Override
     public boolean onPreferenceChange(Preference preference, Object newValue) {
-
-        if (preference == menuDisplayLocation) {
+        if (preference == mNavigationBarTransparency) {
+            int navBarTransparency = Integer.valueOf((String) newValue);
+            Settings.System.putInt(getActivity().getContentResolver(),
+                    Settings.System.NAV_BAR_TRANSPARENCY, navBarTransparency);
+            return true;
+        } else if (preference == menuDisplayLocation) {
             Settings.System.putInt(getActivity().getContentResolver(),
                     Settings.System.MENU_LOCATION, Integer.parseInt((String) newValue));
             return true;

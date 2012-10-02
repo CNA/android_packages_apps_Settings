@@ -4163,8 +4163,8 @@
     <string name="power_menu_silenttoggle_title">Silent toggle</string>
 
     <!-- Interface | Status bar -->
-    <string name="status_bar_transparency_title">Statusbar Transparency</string>
-    <string name="status_bar_transparency_summary">Adjust statusbar transparency</string>
+    <string name="status_bar_transparency_title">Transparency</string>
+    <string name="status_bar_transparency_summary">Adjust status bar transparency</string>
     <string name="battery_icon_category">Battery icon options</string>
     <string name="battery_icon">Battery icon style</string>
     <string name="battery_not_title">Battery icon in notifications</string>
@@ -4297,6 +4297,8 @@
 
     <!-- Interface | Navigation bar -->
     <string name="header_navbar">Navigation bar</string>
+    <string name="navigation_bar_transparency_title">Transparency</string>
+    <string name="navigation_bar_transparency_summary">Adjust navigation bar transparency</string>
     <string name="header_summary_navigation_bar">Buttons to display, nav bar color, order, height</string>
     <string name="custom_app_icon_successfully">"'s icon set successfully!"</string>
     <string name="navigation_bar">Navigation bar</string>
