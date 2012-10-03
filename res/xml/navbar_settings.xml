@@ -89,10 +89,11 @@
         android:key="navigation_bar_style"
         android:title="@string/navigation_bar_style">
 
-        <com.android.settings.cnd.ColorPreference
+        <net.margaritov.preference.colorpicker.ColorPickerPreference
             android:key="interface_navbar_color"
             android:title="@string/interface_navbar_color_title"
-            android:summary="@string/interface_navbar_color_summary" />
+            android:summary="@string/interface_navbar_color_summary"
+            android:defaultValue="#000000" />
     
         <Preference
             android:key="interface_navbar_color_default"
