@@ -1765,6 +1765,7 @@
 		<item>Back</item>
 		<item>Recents</item>
 		<item>Search</item>
+        <item>Screenshot</item>
 		<item>Menu</item>
 		<item>Toggle Widgets</item>
         <item>Open IME Switcher</item>
@@ -1780,6 +1781,7 @@
 		<item>**back**</item>
 		<item>**recents**</item>
 		<item>**search**</item>
+        <item>**screenshot**</item>
 		<item>**menu**</item>
 		<item>**widgets**</item>
         <item>**ime**</item>
